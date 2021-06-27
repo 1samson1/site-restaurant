@@ -1,0 +1,25 @@
+<div class="container-fill">
+    <div class="panel-header">Список записей на приём к врачам</div>
+    <div class="panel-body">
+        <table class="list">
+            <thead>
+                <tr>
+                    <th>ФИО доктора:</th>
+                    <th>Специальность врача:</th>
+                    <th>Пациент:</th>
+                    <th>Дата и время приёма:</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                [recdoc]
+                <tr>
+                    <td data-list-colname="ФИО доктора:">{doctor_name}</td>
+                    <td data-list-colname="Специальность врача:">{doctor_specialty}</td>
+                    <td data-list-colname="Пациент:">{patient}</td>
+                    <td data-list-colname="Дата и время приёма:">{date}</td>                    
+                </tr>
+                [/recdoc]
+            </tbody>
+        </table>
+    </div>    
+</div>

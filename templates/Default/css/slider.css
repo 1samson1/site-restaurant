@@ -1,0 +1,16 @@
+.slider{
+    overflow: hidden;
+    box-shadow: 1px 1px 4px 1px #bbb;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.slides{
+    display: flex;
+    transition:transform 1s ease;
+}
+
+.slider img{
+    display: block;
+    width: 100%;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>    
+    {head}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    
+    <link rel="stylesheet" href="{TEMPLATE}/css/slider.css">
+    
+    <link rel="stylesheet" href="{TEMPLATE}/css/opener.css">    
+    <script src="{TEMPLATE}/js/opener.js"></script>  
+
+    <link rel="stylesheet" href="{TEMPLATE}/css/scrollTop.css">    
+    <script src="{TEMPLATE}/js/scrollTop.js"></script>  
+    
+    <link rel="stylesheet" href="{TEMPLATE}/css/style.css">
+    <script src="{TEMPLATE}/js/default.js"></script>    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="topmenu">
+                <div class="topmenu__left">    
+                    <div class="opener">
+                        <div class="menu-button">
+                            <div class="menu-icon-wrapper" tabindex="0">                                
+                                <div class="menu-icon"></div>                                
+                            </div>
+                        </div>
+                        <div class="links links-left">
+                            <a href="/" class="topmenu__link">Главная</a>
+                            <a href="/news/" class="topmenu__link">Новости</a>                            
+                        </div>
+                    </div>  
+                </div>
+                <div class="topmenu__center">
+                    <a href="/" class="logo"></a>
+                </div>
+                <div class="topmenu__right">
+                    {login}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="alerts">
+                {alerts}
+            </div>
+            [page=main]
+            <div class="slider">  
+                <script src="{TEMPLATE}/js/slider.js"></script>              
+                <div class="slides">
+                    <img src="{TEMPLATE}/slides/1.jpg" alt="" class="slide">
+                    <img src="{TEMPLATE}/slides/2.jpg" alt="" class="slide">
+                    <img src="{TEMPLATE}/slides/3.jpg" alt="" class="slide">
+                    <img src="{TEMPLATE}/slides/4.jpg" alt="" class="slide">
+                </div>                             
+            </div>
+            [/page=main]
+            <div class="middle">
+                <div class="content">
+                    {content}
+                </div>
+                <div class="sidebar">
+                    <div class="container-fill">
+                        <div class="container-header">Поиск</div>
+                        <div class="container-body">Поиск</div>
+                    </div>
+                    <div class="container-fill">
+                        <div class="container-header">Меню</div>
+                        <div class="container-body">Поиск</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-line">
+            <div class="container">
+                &copy;Copyright  2021. Разработка - Самсонов Александр.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
