@@ -6,6 +6,7 @@
         public $repeat_block = null;
         public $template = null;
         public $copy_template = null;
+        public $temp = null;
         public $data = array();
         public $data_block = array();
         public $data_block_param = array();
@@ -50,10 +51,10 @@
 
             $this->check_group();    
 
-            if( strpos( $this->copy_template, "{custom" ) !== false ) {	
-                $this->custom();   
+            if( strpos( $this->template, "{custom" ) !== false ) {	
+                $this->custom();
             }
-        }  
+        }
 
         public function replace_tags($template){
             foreach($this->data as $tag => $value){
@@ -133,12 +134,14 @@
             $this->repeat_block = null;
             $this->copy_template = null;
             $this->endlines = null;
+            $this->temp = null;
         }
 
         public function clear(){
             $this->template = null;
             $this->copy_template = null;
             $this->endlines = null;
+            $this->temp = null;
         }
         
         public function print(){
@@ -171,9 +174,52 @@
 
         private function custom(){
             $this->template = preg_replace_callback(
-                '/\{custom(.+?)\}/s',
+                '/\{custom(.+?)\}/is',
                 function ($matches){
-                   var_dump($matches);
+                    global $config, $db;
+
+                    $params = $matches[1];
+
+                    if( preg_match( "/category=['\"](.+?)['\"]/i", $params, $match ) ) {
+                        $custom_category = trim($match[1]);
+                    } else $custom_category = "";
+
+                    if( preg_match( "/template=['\"](.+?)['\"]/i", $params, $match ) ) {
+                        $custom_template = trim($match[1]);
+                    } else $custom_template = "shortnews.html";
+
+                    if( preg_match( "/limit=['\"](.+?)['\"]/i", $params, $match ) ) {
+                        $custom_limit = intval($match[1]);
+                    } else $custom_limit = $config['count_tovars_on_page'];
+
+                    if( preg_match( "/sort=['\"](.+?)['\"]/i", $params, $match ) ) {
+                        $custom_sort = trim($match[1]);
+                    } else $custom_sort = "ASC";
+
+                    $db->custom_tovars($custom_limit, $custom_category, $custom_sort);      
+                    
+                    $this->temp = $this->template;
+
+                    $this->load($custom_template);
+
+                    while($tovar = $db->get_row()){
+                        $this->set('{poster}', $tovar['poster']);
+                        $this->set('{name}', $tovar['name']);
+                        $this->set('{description}', $tovar['description']);
+                        $this->set('{prace}', $tovar['prace']);
+
+                        $this->copy_tpl();
+                    }
+
+                    $this->template = $this->temp;
+
+                    $this->temp = $this->copy_template;
+
+                    $this->copy_template = null;
+
+                    return $this->temp;
+
+
                 },
                 $this->template
             );

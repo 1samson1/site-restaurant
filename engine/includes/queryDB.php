@@ -76,36 +76,31 @@
             ;');
         }
 
-        /*////////////////// Query for recdoc page  ////////////////////*/
+        /*////////////////// Query for tovars ////////////////////*/
 
-        public function get_specialties(){
+        public function custom_tovars($limit, $category, $sort){
+
+            if($category){
+
+                $category = explode(',', $category);
+    
+                foreach ($category as $key => $value){
+                    $category[$key] = '"'.trim($value).'"';
+                }
+    
+                $category = "WHERE `categories`.`url` IN (".implode(',', $category).")";
+            }
+
+
             return $this->query('
-                SELECT * FROM `specialties`
-            ;');
-        }
-        
-        public function get_doctors_by_specialty($id){
-            return $this->query('
-                SELECT `doctors`.`id`, `doctors`.`name`, `doctors`.`foto`, `doctors`.`kabinet`, `specialties`.`title` AS `specialty` FROM `doctors` 
-                    INNER JOIN `specialties` ON `specialties`.`id` = `doctors`.`specialty_id`
-                    WHERE `doctors`.`specialty_id` = '.$this->ecran_html($id).'
+                SELECT `tovars`.* FROM `tovars` 
+                    INNER JOIN `categories` ON `categories`.`id` = `tovars`.`category_id`
+                    '.$category.'
+                    ORDER BY `tovars`.`date` '.$sort.'
+                    LIMIT '.$limit.'
             ;');
         }
 
-        public function get_doctor_by_id($id){
-            return $this->query('
-                SELECT `doctors`.*, `specialties`.`title` AS `specialty`, `specialties`.`id` AS `specialty_id` FROM `doctors` 
-                    INNER JOIN `specialties` ON `specialties`.`id` = `doctors`.`specialty_id`
-                    WHERE `doctors`.`id` = '.$this->ecran_html($id).'
-            ;');
-        }
-
-        public function recording($doctor_id, $user_id, $date, $time){
-            return $this->query('
-                INSERT INTO `recdoctor` (`time`, `doctor_id`, `user_id`) 
-                    VALUES ('.strtotime($time,strtotime($date)).', '.$this->ecran_html($doctor_id).', '.$this->ecran_html($user_id).')
-            ;');
-        }
 
         /*////////////////// Query for news ////////////////////*/
 
@@ -365,131 +360,5 @@
             ;');
         }
 
-        /* Module specialties */
-
-        public function get_specialties_mod(){
-            return $this->query('
-                SELECT `id`, `title` FROM `specialties`        
-            ;');
-        }
-
-        public function get_specialty_by_id($id){
-            return $this->query('
-                SELECT `id`, `title`, `description`, `image` FROM `specialties` WHERE `id` = '.$this->ecran_html($id).'
-            ;');
-        }
-
-        public function add_specialty($title, $description){
-            return $this->query('
-                INSERT INTO `specialties` (`title`, `description`) 
-                    VALUES ("'.$this->ecran_html($title).'", "'.$this->ecran($description).'")
-            ;');
-        }
-
-        public function edit_specialty($id, $title, $description, $image){
-            if($image){
-                $image = ', `image` = "'.$image.'"';
-            }
-            else{
-                $image = '';
-            }
-            return $this->query('
-                UPDATE `specialties` 
-                    SET                          
-                        `title` = "'.$this->ecran_html($title).'",
-                        `description` = "'.$this->ecran($description).'"
-                        '.$image.'
-                    WHERE `id` = "'.$this->ecran_html($id).'"
-            ;');
-        }
-
-        public function remove_specialty($id){
-            return $this->query('
-                DELETE FROM `specialties`
-                    WHERE `id` = "'.$this->ecran_html( $id).'"
-            ;');
-        }
-
-        /* Module doctors */
-
-        public function get_doctors(){
-            return $this->query('
-                SELECT 
-                    `doctors`.`id`,
-                    `doctors`.`name`,
-                    `specialties`.`title` AS `specialty`,
-                    `doctors`.`kabinet` 
-                FROM `doctors` 
-                    INNER JOIN `specialties` ON `specialties`.`id` = `doctors`.`specialty_id`    
-            ;');
-        }
-
-       public function add_doctor($name, $specialty_id, $kabinet, $mon, $tue, $wed, $thu, $fri, $sat, $sun){
-            return $this->query('
-                INSERT INTO `doctors` (`name`, `specialty_id`, `kabinet`, `sun`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`) 
-                    VALUES (
-                        "'.$this->ecran_html($name).'",
-                        "'.$this->ecran_html($specialty_id).'",
-                        "'.intval($this->ecran_html($kabinet)).'",
-                        "'.$this->bool_to_sql($sun).'",
-                        "'.$this->bool_to_sql($mon).'",
-                        "'.$this->bool_to_sql($tue).'",
-                        "'.$this->bool_to_sql($wed).'",
-                        "'.$this->bool_to_sql($thu).'",
-                        "'.$this->bool_to_sql($fri).'",
-                        "'.$this->bool_to_sql($sat).'"
-                    )
-            ;');
-        }       
-        
-        public function edit_doctor($id, $name, $specialty_id, $foto, $kabinet, $mon, $tue, $wed, $thu, $fri, $sat, $sun){
-            if($foto){
-                $foto = ', `foto` = "'.$foto.'"';
-            }
-            else{
-                $foto = '';
-            }
-            return $this->query('
-                UPDATE `doctors` 
-                    SET
-                        `name` = "'.$this->ecran_html($name).'",
-                        `specialty_id` = "'.$this->ecran_html($specialty_id).'",
-                        `kabinet` = "'.intval($this->ecran_html($kabinet)).'",
-                        `sun` = "'.$this->bool_to_sql($sun).'",
-                        `mon` = "'.$this->bool_to_sql($mon).'",
-                        `tue` = "'.$this->bool_to_sql($tue).'",
-                        `wed` = "'.$this->bool_to_sql($wed).'",
-                        `thu` = "'.$this->bool_to_sql($thu).'",
-                        `fri` = "'.$this->bool_to_sql($fri).'",
-                        `sat` = "'.$this->bool_to_sql($sat).'"
-                        '.$foto.'
-                    WHERE `id` = "'.$this->ecran_html($id).'"
-            ;');
-        }
-
-        public function remove_doctor($id){
-            return $this->query('
-                DELETE FROM `doctors`
-                    WHERE `id` = "'.$this->ecran_html( $id).'"
-            ;');
-        }
-
-        /* Module recdoc */
-
-        public function get_recdoc(){
-            return $this->query('
-                SELECT 
-                    `users`.`name`,
-                    `users`.`surname`,
-                    `doctors`.`name` AS `doctor_name`,
-                    `specialties`.`title` AS `doctor_specialty`,
-                    `recdoctor`.`time`
-                FROM `recdoctor`
-                    INNER JOIN `users` ON `recdoctor`.`user_id` = `users`.`id`
-                    INNER JOIN `doctors` ON `recdoctor`.`doctor_id` = `doctors`.`id`
-                    INNER JOIN `specialties` ON `specialties`.`id` = `doctors`.`specialty_id`
-                    ORDER BY `recdoctor`.`time` DESC
-            ;');
-        }
     }
 ?>
