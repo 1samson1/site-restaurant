@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Июн 17 2021 г., 18:45
+-- Время создания: Июн 28 2021 г., 20:36
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -19,8 +19,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `medicine`
+-- База данных: `eda`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `url`, `date`) VALUES
+(8, 'Салаты и закуски', 'salad', 1),
+(9, 'Основные Блюда', 'surdish', 1),
+(10, 'Супы и Выпечка', 'soups', 1),
+(11, 'Соусы и Гарниры', 'sauces', 1),
+(12, 'Десерты', 'desserts', 1),
+(13, 'Винная Карта', 'wines', 1),
+(14, 'Напитки и Коктейли', 'drinks', 1);
 
 -- --------------------------------------------------------
 
@@ -45,43 +71,6 @@ INSERT INTO `comments` (`id`, `news_id`, `user_id`, `text`, `date`, `parent`) VA
 (1, 1, 12, '<p>Хорошая новость</p>', 1564163134, NULL),
 (2, 2, 56, '<p>Ну значит запишусь после каникул.</p>', 1651354654, NULL),
 (11, 2, 12, '<p><img src=\"https://drasler.ru/wp-content/uploads/2019/05/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-%D0%BD%D0%B0-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9-%D1%81%D1%82%D0%BE%D0%BB-%D1%82%D0%B8%D0%B3%D1%80-5.jpg\" alt=\"\" /></p>', 1622133007, NULL);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `doctors`
---
-
-CREATE TABLE `doctors` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `specialty_id` int(11) UNSIGNED NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `kabinet` int(11) UNSIGNED DEFAULT NULL,
-  `mon` tinyint(1) NOT NULL,
-  `tue` tinyint(1) NOT NULL,
-  `wed` tinyint(1) NOT NULL,
-  `thu` tinyint(1) NOT NULL,
-  `fri` tinyint(1) NOT NULL,
-  `sat` tinyint(1) NOT NULL,
-  `sun` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `doctors`
---
-
-INSERT INTO `doctors` (`id`, `name`, `specialty_id`, `foto`, `kabinet`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`) VALUES
-(1, 'Мирная Ирина Сергеевна', 1, 'uploads/doctors/1.jpg', 1, 1, 0, 1, 0, 1, 0, 0),
-(2, 'Вареньева Марина Александровна', 1, 'uploads/doctors/2.jpg', 2, 0, 1, 0, 1, 1, 0, 0),
-(3, 'Кульянов Андрей Витальевич', 2, 'uploads/doctors/3.jpg', 3, 1, 1, 1, 1, 1, 0, 0),
-(4, 'Астапов Андрей Петрович', 3, 'uploads/doctors/4.jpg', 4, 1, 1, 1, 1, 1, 0, 0),
-(5, 'Верная Галина Петровна', 4, 'uploads/doctors/5.jpg', 5, 0, 1, 1, 1, 1, 0, 0),
-(6, 'Креанов Эдуард Максимович', 5, 'uploads/doctors/6.jpg', 6, 1, 1, 1, 1, 1, 0, 0),
-(7, 'Кирсанов Игорь Александрович', 6, 'uploads/doctors/7.jpg', 7, 1, 1, 1, 1, 1, 0, 0),
-(8, 'Коршина Елена Петровна', 7, 'uploads/doctors/8.jpg', 8, 0, 0, 1, 1, 1, 0, 0),
-(9, 'Машина Вероника Сергеевна', 7, 'uploads/doctors/9.jpg', 9, 1, 1, 0, 0, 1, 0, 0),
-(10, 'Петров Даниил Александрович', 8, 'uploads/doctors/10.jpg', 10, 1, 1, 1, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -125,85 +114,10 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`id`, `autor`, `title`, `short_news`, `full_news`, `date_edit`, `date`) VALUES
 (1, 12, 'В нашей клинике появился лазерный хирургический аппарат', '<p style=\"text-align: justify;\">В нашей клинике появился лазерный хирургический аппарат. Предназначен он для лечения сосудистой патологии нижних конечностей (варикозная болезнь), заболеваний прямой кишки (геморрой) и патологии лор органов.</p>', '<p style=\"text-align: justify;\">В нашей клинике появился лазерный хирургический аппарат. Предназначен он для лечения сосудистой патологии нижних конечностей (варикозная болезнь), заболеваний прямой кишки (геморрой) и патологии лор органов. Принцип действия аппарата: вена обжигается лазерным излучением изнутри, после чего происходит полное её склеивание. Спустя определённого периода времени вена перестаёт существовать.</p>\r\n<p style=\"text-align: justify;\">Уникальность прибора в том, что длина волны лазера составляет 1940 нм. Это абсолютно новое течение в лазерной хирургии. Данные операции относятся к разряду малоинвазивных. Выполняются без разрезов под местным обезболивающим, имеют меньший болевой синдром и малую травматичность. После такой операции пациенты очень быстро восстанавливаются и возвращаются к привычной жизни.</p>', 1622126059, 1432874149),
 (2, 12, 'Как будут работать больницы и поликлиники с 1 по 10 мая 2021 года', '<p style=\"text-align: justify;\">Так как Указом Президента РФ общая продолжительность майских праздников составит 10 дней (с 1 по 10 мая), больницы и поликлиники изменят график работы. Уже известно, что больницы и поликлиники не будут полноценно работать все майские праздники, в том числе с 4 по 7 мая. Но продолжат работу все пункты вакцинации, а в поликлиниках организуют дежурные группы специалистов.</p>', '<p style=\"text-align: justify;\">Так как Указом Президента РФ общая продолжительность майских праздников составит 10 дней (с 1 по 10 мая), больницы и поликлиники изменят график работы. Уже известно, что больницы и поликлиники не будут полноценно работать все майские праздники, в том числе с 4 по 7 мая. Но продолжат работу все пункты вакцинации, а в поликлиниках организуют дежурные группы специалистов.</p>\r\n<p style=\"text-align: justify;\">Минтруд выпустил рекомендации о нерабочих днях с 4 по 7 мая.</p>\r\n<p style=\"text-align: justify;\"><span style=\"font-size: 14pt;\"><strong>График работы больниц и поликлиник в майские праздники 2021 года</strong></span></p>\r\n<p style=\"text-align: justify;\">Несмотря на увеличенную продолжительность майских праздников, в сфере здравоохранения продолжат работу:</p>\r\n<ul style=\"text-align: justify;\">\r\n<li>дежурные группы медиков, которые будут принимать пациентов в экстренных ситуациях в поликлиниках;</li>\r\n<li>стационары больниц, где пациенты проходят лечение;</li>\r\n<li>сотрудники скорой и неотложной помощи;</li>\r\n<li>пункты вакцинации от коронавируса.</li>\r\n</ul>\r\n<p style=\"text-align: justify;\">Таким образом, попасть на плановый прием к медицинским специалистам будет нельзя с 1 по 10 мая. Но экстренную и неотложную помощь можно получить даже в праздники.</p>\r\n<p style=\"text-align: justify;\">В каждом регионе есть круглосуточные телефоны горячих линий, где можно получить информацию о графике работы медиков в определенных больницах и поликлиниках. Также отметим, что коммерческие медицинские центры и клиники могут работать даже в нерабочие, выходные и праздничные дни мая, так как это зависит от решения руководителя.</p>\r\n<p style=\"text-align: justify;\">Еще раз напомним текст Указа президента Путина о майских праздниках 2021 года:</p>\r\n<p style=\"text-align: justify;\">В целях сохранения тенденции сокращения распространения новой коронавирусной инфекции (COVID-19), укрепления здоровья граждан Российской Федерации и в соответствии со статьей 80 Конституции Российской Федерации постановляю:</p>\r\n<ol>\r\n<li style=\"text-align: justify;\">Установить с 4 по 7 мая 2021 г. включительно нерабочие дни с сохранением за работниками заработной платы.</li>\r\n<li style=\"text-align: justify;\">Органам публичной власти, иным органам и организациям определить количество служащих и работников, обеспечивающих с 1 по 10 мая 2021 г. включительно функционирование этих органов и организаций.</li>\r\n<li style=\"text-align: justify;\">Настоящий Указ вступает в силу со дня его официального опубликования.</li>\r\n</ol>', 1622126075, 1619670949),
-(52, 12, 'Тест новости с редактором название', '<p>Тест новости с редактором короткое</p>', '<p>Тест новости с редактором полное</p>', 1622125021, 1622126377);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `recdoctor`
---
-
-CREATE TABLE `recdoctor` (
-  `doctor_id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
-  `time` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `recdoctor`
---
-
-INSERT INTO `recdoctor` (`doctor_id`, `user_id`, `time`) VALUES
-(1, 12, 1576161000),
-(1, 12, 1577628000),
-(1, 12, 1577631600),
-(1, 12, 1577635200),
-(1, 12, 1577637000),
-(1, 12, 1577642400),
-(1, 12, 1577646000),
-(1, 12, 1577649600),
-(1, 12, 1577800800),
-(3, 12, 1577802600),
-(1, 12, 1577804400),
-(2, 12, 1577806200),
-(1, 12, 1577813400),
-(1, 12, 1577822400),
-(1, 12, 1577824200),
-(1, 12, 1577885940),
-(1, 12, 1577950200),
-(1, 12, 1578147240),
-(1, 12, 1578148200),
-(1, 12, 1578159000),
-(2, 12, 1580475600),
-(1, 12, 1580998620),
-(1, 12, 1585335600),
-(7, 12, 1620968400),
-(5, 12, 1620970200),
-(5, 12, 1620973800),
-(6, 12, 1620973800),
-(5, 12, 1621321200),
-(6, 12, 1621576800),
-(7, 12, 1622192400),
-(7, 12, 1622442600),
-(5, 56, 1621492200),
-(6, 56, 1621924200);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `specialties`
---
-
-CREATE TABLE `specialties` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `specialties`
---
-
-INSERT INTO `specialties` (`id`, `title`, `description`, `image`) VALUES
-(1, 'Травматолог и ортопед', '<p>Специалист, который диагностирует и лечит травматическую и нетравматическую патологию опорно-двигательного аппарата (кости, суставы, мышцы, связки, хрящи)</p>', 'uploads/specialties/travma.png'),
-(2, 'Невролог', '<p>Врач, занимающийся выявлением, терапией и предупреждением развития болезней нервной системы.</p>', 'uploads/specialties/nero.png'),
-(3, 'Окулист', '<p>Врач, который специализируется на изучении механизмов возникновения и развития заболеваний органов зрения.</p>', 'uploads/specialties/oko.png'),
-(4, 'Педиатр', '<p>Врач, который занимается диагностикой, лечением и профилактикой заболеваний у детей.</p>', 'uploads/specialties/pediator.png'),
-(5, 'Уролог', '<p>Врач, который занимается диагностикой, лечением и профилактикой заболеваний органов мочеполовой системы.</p>', 'uploads/specialties/urologpng.png'),
-(6, 'Хирург', '<p>Врач-специалист, получивший подготовку по методам диагностики и хирургического лечения заболеваний и травм.</p>', 'uploads/specialties/hirurg.png'),
-(7, 'Хирургическая стоматология', '<p>Один из разделов стоматологии, который специализируется на подсадке костной ткани, оперативном удалении/подготовке/имплантации зубов.</p>', 'uploads/specialties/hirurstom.png'),
-(8, 'Лечебная стоматология', '<p>Раздел медицины, основное назначение которого диагностика, лечение зубов и предупреждение заболеваний ротовой полости.</p>', 'uploads/specialties/lechstom.png');
+(52, 12, 'Тест новости с редактором название', '<p>Тест новости с редактором короткое</p>', '<p>Тест новости с редактором полное</p>', 1622125021, 1622126377),
+(54, 12, 'Тест2', '<p>Тест2</p>', '<p>Тест2</p>', 1624797724, 1624797724),
+(55, 12, 'Тест3', '<p>Тест3</p>', '<p>Тест3</p>', 1624797733, 1624797733),
+(56, 12, 'Тест4', '<p>Тест4</p>', '<p>Тест4</p>', 1624797746, 1624797746);
 
 -- --------------------------------------------------------
 
@@ -230,6 +144,75 @@ INSERT INTO `static` (`id`, `url`, `title`, `template`, `date_edit`, `date`) VAL
 (3, 'prace', 'Прайс-лист', '<table border=\"1\" cellspacing=\"0\" cellpadding=\"1\">\r\n<thead>\r\n<tr>\r\n<th>Травматолог и ортопед</th>\r\n<th>Цена в руб.</th>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>Травматолог и ортопед</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Невролог</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Окулист</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Педиатр</td>\r\n<td>1500</td>\r\n</tr>\r\n<tr>\r\n<td>Уролог</td>\r\n<td>1700</td>\r\n</tr>\r\n<tr>\r\n<td>Хирург</td>\r\n<td>500</td>\r\n</tr>\r\n<tr>\r\n<td>Хирургическая стоматология</td>\r\n<td>3000</td>\r\n</tr>\r\n<tr>\r\n<td>Лечебная стоматология</td>\r\n<td>2500</td>\r\n</tr>\r\n<tr>\r\n<td>Стоматология общей практики</td>\r\n<td>1500</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1621873997, 1621793638),
 (4, 'rating', 'Рейтинг врачей', '<table class=\"cwdtable\" border=\"1\" cellspacing=\"0\" cellpadding=\"1\">\r\n<thead>\r\n<tr>\r\n<th>Специалист</th>\r\n<th>Рейтинг</th>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>Травматолог и ортопед</td>\r\n<td>4,7</td>\r\n</tr>\r\n<tr>\r\n<td>Невролог</td>\r\n<td>4,2</td>\r\n</tr>\r\n<tr>\r\n<td>Окулист</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Педиатр</td>\r\n<td>5,0</td>\r\n</tr>\r\n<tr>\r\n<td>Уролог</td>\r\n<td>4,9</td>\r\n</tr>\r\n<tr>\r\n<td>Хирург</td>\r\n<td>4,3</td>\r\n</tr>\r\n<tr>\r\n<td>Хирургическая стоматология</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Лечебная стоматология</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Стоматология общей практики</td>\r\n<td>4,6</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1621874012, 1621793638),
 (5, 'insurance', 'Страхование', '<p><img src=\"/uploads/images/medicinskoe-strahovanie.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\">Болезни вредят не только здоровью человека, но и приводят к материальным потерям: операции, медикаменты, различные медицинские исследования и лечебные процедуры иногда стоят дорого.</p>\r\n<p style=\"text-align: justify;\"><strong>Советуем оформить медицинский полис.</strong> Что дает полис добровольного медицинского страхования?</p>\r\n<ul>\r\n<li style=\"text-align: justify;\">Гарантия сохранности ваших средств, поскольку после приобретения полиса ДМС все затраты на медицинскую помощь в рамках программы страхования несет страховая компания,</li>\r\n<li style=\"text-align: justify;\">ваш выбор страховой программы с необходимым объемом медицинских услуг в оптимальных для вас лечебных учреждениях,</li>\r\n<li style=\"text-align: justify;\">гарантия того, что вы своевременно получите квалифицированную медицинскую помощь в рамках выбранной вами программы страхования,</li>\r\n<li style=\"text-align: justify;\">возможность круглосуточно получать бесплатные консультации у специалистов контакт-центра страховой компании по возникающим вопросам, в том числе по организации необходимой медицинской помощи в лечебном учреждении,</li>\r\n<li style=\"text-align: justify;\">постоянный контроль качества предоставляемых услуг и защита ваших интересов перед лечебным учреждением.</li>\r\n</ul>\r\n<p>Застраховаться <strong>8-800-999-65-78</strong></p>\r\n<p>Номер поддержки <strong>8-800-999-65-79</strong></p>', 1621877141, 1621793638);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tovars`
+--
+
+CREATE TABLE `tovars` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prace` int(11) NOT NULL,
+  `discount` int(11) NOT NULL DEFAULT 0,
+  `poster` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `date` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tovars`
+--
+
+INSERT INTO `tovars` (`id`, `category_id`, `name`, `description`, `prace`, `discount`, `poster`, `date`) VALUES
+(1, 8, 'Салат “Центральный”', 'из слабосоленой семги с красной икрой и йогуртовой заправкой (160 г)', 450, 0, 'uploads/tovars/1.jpg', 1),
+(2, 8, 'Салат “Греческий', ' огурец, помидоры, перец болгарский, маслины чёрные без косточек, лук, сыр фета, петрушка, травы, масло оливковое (200 г)', 320, 0, 'uploads/tovars/2.jpg', 1),
+(3, 8, 'Салат “Царский”', 'ростбиф, буженина с солеными огурцами, домашним майонезом, в корзинке из пармезана (185 г)', 340, 0, 'uploads/tovars/3.jpg', 1),
+(4, 8, 'Салат из языка “Восторг”', 'язык говяжий с огурцом, яйцом, картофелем, заправленный домашним майонезом (150 г)', 320, 0, 'uploads/tovars/4.jpg', 1),
+(5, 8, 'Теплый салат с куриной печенью', 'тушеная в сливках куриная печень с салатом, беконом, томатами и яйцом «пашот» (200 г)', 320, 0, 'uploads/tovars/5.jpg', 1),
+(6, 8, 'Мясной салат с жареными грибами', 'буженина, соленые огурцы, грибы, перепелиные яйца, заправлен домашним майонезом (185 г)', 320, 0, 'uploads/tovars/6.jpg', 1),
+(7, 8, 'Салат “Цезарь” с курицей', 'листья салата с соусом «Цезарь», с пшеничными гренками и жареной куриной грудкой (165 г)', 390, 0, 'uploads/tovars/7.jpg', 1),
+(8, 8, 'Салат “Амарант”', 'теплый салат из шпината с жареной говяжьей вырезкой под имбирным соусом (180/30 г)', 430, 0, 'uploads/tovars/8.jpg', 1),
+(9, 8, 'Салат “Морской”', 'салат из свежих томатов, листьев салата, помидоров черри, сладкого перца и жареных морепродуктов (200 г)', 540, 0, 'uploads/tovars/9.jpg', 1),
+(10, 8, 'Салат “Цезарь” с креветкой', 'листья салата с соусом «Цезарь», с пшеничными гренками и тигровыми креветками (165 г)', 520, 0, 'uploads/tovars/10.jpg', 1),
+(11, 8, 'Салат “Нисуаз” с лососем', 'листья салата с жареным лососем, каперсами, под соусом из оливкового масла, анчоусов, французской горчицы и бальзамического уксуса (190 г)', 420, 0, 'uploads/tovars/11.jpg', 1),
+(12, 8, 'Салат “Атлантик”', 'тунец опаленный дымом с киноа, брокколи и черри (200/30 г)', 490, 0, 'uploads/tovars/12.jpg', 1),
+(13, 8, 'Овощной салат', 'со сметаной или ароматным маслом на ваш выбор (180 г)', 250, 0, 'uploads/tovars/13.jpg', 1),
+(14, 9, 'Стейк лосося, запеченый в пергаменте', 'с соусом из сливок и шпината 260 гр.', 750, 0, 'uploads/tovars/14.jpg', 1),
+(15, 9, 'Стейк лосося жареный на гриле', 'с гарниром из жареного шпината и соусом из красного апельсина 120/80/30 гр.', 750, 0, 'uploads/tovars/15.jpg', 1),
+(16, 9, 'Котлета из трески и лосося', 'со свекольным булгуром и тимьяном 110/140/30 г', 480, 0, 'uploads/tovars/16.jpg', 1),
+(17, 9, 'Филе трески “Вайгач”', 'запеченное в ароматных травах с зеленым кус кусом 120/150/30 г.', 480, 0, 'uploads/tovars/17.jpg', 1),
+(18, 9, 'Бефстроганов из говяжьей вырезки', 'с грибами, картофельным пюре 150/150 г.', 530, 0, 'uploads/tovars/18.jpg', 1),
+(19, 9, 'Стейк из свинины', 'с картофелем фри и соусом «барбекю» 130/50 г.', 460, 0, 'uploads/tovars/19.jpg', 1),
+(20, 9, 'Куриная грудка с сыром', 'томатами черри, базиликом и крем бальзамиком 170 г.', 350, 0, 'uploads/tovars/20.jpg', 1),
+(21, 9, 'Котлета с яйцами Бенедикт под соусом “Голландез”', 'Нежная куриная котлета, запеченная в печи, сервируется жареным беконом, яйцом \"пашот\" и соусом \"голландез\" 120/105 г', 370, 0, 'uploads/tovars/21.jpg', 1),
+(22, 10, 'Борщ со сметаной', 'и чесночными пампушками 300/60 г.', 290, 0, 'uploads/tovars/22.jpg', 1),
+(23, 10, 'Уха с расстегаями', 'уха из лосося, трески и горбуши с рыбными расстегаями 300/80 г.', 350, 0, 'uploads/tovars/23.jpg', 1),
+(24, 10, 'Суп куриный с домашней лапшой', '300 г.', 240, 0, 'uploads/tovars/24.jpg', 1),
+(25, 10, 'Расстегай с семужкой', '40 г.', 75, 0, 'uploads/tovars/25.jpg', 1),
+(26, 10, 'Пампушки чесночные', '40 г.', 30, 0, 'uploads/tovars/26.jpg', 1),
+(27, 10, 'Хлебная корзина', 'булочки - пшеничная, мультизлаковая, с солодом и кориандром, фокачча 120/150 г', 210, 0, 'uploads/tovars/27.jpg', 1),
+(28, 10, 'Фокачча', 'Классическая/ С сыром', 180, 0, 'uploads/tovars/28.jpg', 1),
+(29, 10, 'Фокачча', 'С беконом', 200, 0, 'uploads/tovars/29.jpg', 1),
+(30, 11, 'Соусы в ассортименте', 'Сметанный, Барбекю, Блю Чиз, Тар Тар, Брусничный, Перечный, Медово-горчичный, Цезарь, Майонез, Сметана, Хрен столовый, Горчица 50 г.', 90, 0, 'uploads/tovars/30.jpg', 1),
+(31, 11, 'Гарниры в ассортименте', 'Картофель фри, Картофельное пюре, Запеченный картофель, Тушеная капуста, Рис отварной, Овощи на пару 150 г.', 150, 0, 'uploads/tovars/31.jpg', 1),
+(32, 11, 'Овощи гриль', '150 гр.', 190, 0, 'uploads/tovars/32.jpg', 1),
+(33, 12, 'Торт “Сливочный” с клубничным соусом', '170/80 г.', 290, 0, 'uploads/tovars/33.jpg', 1),
+(34, 12, 'Штрудель с яблоком и пломбиром', '200 г.', 295, 0, 'uploads/tovars/34.jpg', 1),
+(35, 12, 'Миндальный торт “Алмонди”', 'С белым, либо с молочным шоколадом, на Ваш выбор. Подается с шариком мороженого 100/50г', 320, 0, 'uploads/tovars/35.jpg', 1),
+(36, 13, 'Кюве Жан-Луи белое Брют', 'Cuvee Jean-Louis Blanc Brut', 1790, 0, 'uploads/tovars/36.jpg', 1),
+(37, 13, 'Кюве Жан-Луи Брют Розе', 'Cuvee Jean-Louis Brut Rose', 1790, 0, 'uploads/tovars/37.png', 1),
+(38, 13, 'Ламбруско Бьянко Аббация', 'Lambrusco Bianco Rosso, Abbazia', 850, 0, 'uploads/tovars/38.jpg', 1),
+(39, 13, 'Ламбруско Россо Аббация', 'Lambrusco Rosso, Abbazia', 850, 0, 'uploads/tovars/39.png', 1),
+(40, 14, 'Pepsi, 7up, Mirinda', '250 мл.', 120, 0, 'uploads/tovars/40.jpg', 1),
+(41, 14, 'Сок в ассортименте', '200 мл', 180, 0, 'uploads/tovars/41.jpg', 1),
+(42, 14, 'Морс ягодный', '250 мл', 110, 0, 'uploads/tovars/42.jpg', 1),
+(43, 14, 'Американо', '200 мл.', 100, 0, 'uploads/tovars/43.jpg', 1),
+(44, 14, 'Капучино', '200 мл.', 150, 0, 'uploads/tovars/44.jpg', 1),
+(45, 14, 'Латте', '230 мл.', 170, 0, 'uploads/tovars/45.jpg', 1),
+(46, 14, 'Глясе', '230 мл.', 190, 0, 'uploads/tovars/46.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -370,11 +353,18 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `date`) VALUES
 (150, 12, '$2y$10$9mk2tg5gWk8g/7AlRCqAV.iq5s8AUP7sbTFLryqWW9HxmnXD57Xxm', 1623856520),
 (151, 12, '$2y$10$.PeHaU.dEuhJNijDZ/DLM.L3HF.w8MlFJ0DSuBQwGGhdACZ8BXGmC', 1623869276),
 (152, 12, '$2y$10$UYrMLYOwqvLBoKr6pNnTteQn3p/zbMglZ9N.mnpGIF1danpZnoViy', 1623930117),
-(153, 12, '$2y$10$wswn3TLDRss2CAe0DtWCb.vfldu0JrunTw2IampCyUcxkh/WSGFsK', 1623933217);
+(153, 12, '$2y$10$wswn3TLDRss2CAe0DtWCb.vfldu0JrunTw2IampCyUcxkh/WSGFsK', 1623933217),
+(154, 12, '$2y$10$463VR5LuDDG/7iyN7zaf7OWn/ht72DxZ3PIjo.c0TC3MpC7T3vnIO', 1624017024);
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `comments`
@@ -383,13 +373,6 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_news_comments` (`news_id`),
   ADD KEY `FK_users_comments` (`user_id`);
-
---
--- Индексы таблицы `doctors`
---
-ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `specialty_id` (`specialty_id`);
 
 --
 -- Индексы таблицы `groups`
@@ -405,25 +388,18 @@ ALTER TABLE `news`
   ADD KEY `FK_users_news` (`autor`);
 
 --
--- Индексы таблицы `recdoctor`
---
-ALTER TABLE `recdoctor`
-  ADD PRIMARY KEY (`time`,`doctor_id`),
-  ADD KEY `recdoctor_ibfk_1` (`doctor_id`),
-  ADD KEY `recdoctor_ibfk_2` (`user_id`);
-
---
--- Индексы таблицы `specialties`
---
-ALTER TABLE `specialties`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `static`
 --
 ALTER TABLE `static`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `url` (`url`);
+
+--
+-- Индексы таблицы `tovars`
+--
+ALTER TABLE `tovars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_category_tovars` (`category_id`);
 
 --
 -- Индексы таблицы `users`
@@ -447,16 +423,16 @@ ALTER TABLE `user_tokens`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT для таблицы `doctors`
---
-ALTER TABLE `doctors`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `groups`
@@ -468,19 +444,19 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
---
--- AUTO_INCREMENT для таблицы `specialties`
---
-ALTER TABLE `specialties`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT для таблицы `static`
 --
 ALTER TABLE `static`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT для таблицы `tovars`
+--
+ALTER TABLE `tovars`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -492,7 +468,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -506,23 +482,16 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `FK_users_comments` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `doctors`
---
-ALTER TABLE `doctors`
-  ADD CONSTRAINT `doctors_ibfk_1` FOREIGN KEY (`specialty_id`) REFERENCES `specialties` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Ограничения внешнего ключа таблицы `news`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `FK_users_news` FOREIGN KEY (`autor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `recdoctor`
+-- Ограничения внешнего ключа таблицы `tovars`
 --
-ALTER TABLE `recdoctor`
-  ADD CONSTRAINT `recdoctor_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `recdoctor_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tovars`
+  ADD CONSTRAINT `fk_category_tovars` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `users`
