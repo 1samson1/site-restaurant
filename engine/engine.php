@@ -30,10 +30,6 @@
         case 'news':
             require_once ENGINE_DIR.'/modules/news.php';
             break;
-
-        case 'recdoc':
-            require_once ENGINE_DIR.'/modules/recdoc.php';
-            break;
         
         default:
             $alerts->set_error('Oшибка', 'Такой страницы или файла не существует!', 404);

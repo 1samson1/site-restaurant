@@ -394,14 +394,14 @@ main{
 }
 
 .tovars .container-body{
-    padding: 10px;
+    padding: 5px 10px 10px 10px;
     display: flex;
     justify-content: space-between;
     gap: 0 15px;
 }
 
 .tovar{
-    width: 33%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -479,17 +479,13 @@ main{
 }
 
 /* REGISTRATION +++++++++++++++++++++++++++++++++++++ */
-
-.container-reg{
-    max-width: 600px;   
-}
-
 .container-reg .form-control{
     margin: 7px 0;
 }
 
 .container-reg .container-header{
     text-align: center;
+    font-size: 1.4em;
 }
 
 .reg-form{
@@ -544,7 +540,7 @@ main{
 }
 
 .profile-title-section{
-    background: #FF8300;
+    background: #FFA240;
     width: 100%;
     padding: 15px;    
     color: #FFF;
@@ -1048,15 +1044,16 @@ footer{
 
 /* MEDIA ++++++++++++++++++++++++++++++++++++++++++ */
 
-@media (max-width: 950px) {
+@media (max-width: 850px) {
     /* TOVARS ************************************* */
-
+    .tovars .container-body{
+        display: block;
+    }
     .tovar{
-        width: 50%;
+        width: 100%;
+        margin-bottom: 15px;
     }
-    .tovar:last-child{
-        display: none;
-    }
+    
 }
 
 
@@ -1071,6 +1068,16 @@ footer{
 
     main{
         padding-top: 85px;
+    }
+
+    /* MAIN *************************************** */
+
+    .middle{
+        display: block;
+    }
+
+    .content, .sidebar{
+        width: 100%;
     }
         
     /* INPUTS ************************************* */

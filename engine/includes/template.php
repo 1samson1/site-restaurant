@@ -48,7 +48,11 @@
             if (file_exists($file_path)) $this->template = file_get_contents($file_path);
             else die('Fatal error! No such file template!');
 
-            $this->check_group();       
+            $this->check_group();    
+
+            if( strpos( $this->copy_template, "{custom" ) !== false ) {	
+                $this->custom();   
+            }
         }  
 
         public function replace_tags($template){
@@ -163,6 +167,16 @@
                 },
                 $this->template
             );     
+        }
+
+        private function custom(){
+            $this->template = preg_replace_callback(
+                '/\{custom(.+?)\}/s',
+                function ($matches){
+                   var_dump($matches);
+                },
+                $this->template
+            );
         }
     }
 ?>
