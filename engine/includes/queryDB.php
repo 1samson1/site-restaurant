@@ -76,9 +76,9 @@
             ;');
         }
 
-        /*////////////////// Query for tovars ////////////////////*/
+        /*////////////////// Query for custom ////////////////////*/
 
-        public function custom_tovars($limit, $category, $sort){
+        public function get_custom($limit, $category, $sort){
 
             if($category){
 
@@ -100,6 +100,8 @@
                     LIMIT '.$limit.'
             ;');
         }
+
+        /*////////////////// Query for tovars ////////////////////*/
 
 
         /*////////////////// Query for news ////////////////////*/

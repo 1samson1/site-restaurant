@@ -1,6 +1,6 @@
 .slider{
     overflow: hidden;
-    box-shadow: 1px 1px 4px 1px #bbb;
+    box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #eeeeee;
     margin-bottom: 15px;
     border-radius: 10px;
 }

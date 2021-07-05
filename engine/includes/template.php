@@ -6,7 +6,6 @@
         public $repeat_block = null;
         public $template = null;
         public $copy_template = null;
-        public $temp = null;
         public $data = array();
         public $data_block = array();
         public $data_block_param = array();
@@ -49,11 +48,7 @@
             if (file_exists($file_path)) $this->template = file_get_contents($file_path);
             else die('Fatal error! No such file template!');
 
-            $this->check_group();    
-
-            if( strpos( $this->template, "{custom" ) !== false ) {	
-                $this->custom();
-            }
+            $this->check_group();
         }
 
         public function replace_tags($template){
@@ -114,6 +109,9 @@
         }
 
         public function save($tag){
+            if( strpos( $this->template, "{custom" ) !== false ) {	
+                $this->custom();
+            }
             $this->template = $this->replace_all($this->template);       
             $this->template .= $this->endlines;
             $this->data[$tag] = $this->template;
@@ -196,9 +194,7 @@
                         $custom_sort = trim($match[1]);
                     } else $custom_sort = "ASC";
 
-                    $db->custom_tovars($custom_limit, $custom_category, $custom_sort);      
-                    
-                    $this->temp = $this->template;
+                    $db->get_custom($custom_limit, $custom_category, $custom_sort);
 
                     $this->load($custom_template);
 
@@ -209,16 +205,13 @@
                         $this->set('{prace}', $tovar['prace']);
 
                         $this->copy_tpl();
-                    }
+                    }                    
 
-                    $this->template = $this->temp;
-
-                    $this->temp = $this->copy_template;
+                    $temp = $this->copy_template;
 
                     $this->copy_template = null;
 
-                    return $this->temp;
-
+                    return $temp;
 
                 },
                 $this->template
