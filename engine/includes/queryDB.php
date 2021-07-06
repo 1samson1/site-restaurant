@@ -103,6 +103,29 @@
 
         /*////////////////// Query for tovars ////////////////////*/
 
+        public function get_category_by_url($url){
+            return $this->query('
+                SELECT 
+                    `categories`.`id`,
+                    `categories`.`name`,
+                    `categories`.`url`,
+                    `categories`.`date`
+                FROM `categories`
+                    WHERE `categories`.`url` = "'.$this->ecran_html($url).'"
+            ;');
+        }
+
+        public function get_tovars_by_category($category_id, $count, $begin=0){
+            return $this->query('
+                SELECT 
+                    `tovars`.*
+                FROM `tovars`
+                    WHERE `category_id` = '.$category_id.'
+                    ORDER BY `tovars`.`date` DESC
+                    LIMIT '.$begin.', '.$count.'
+            ;');
+        }
+
 
         /*////////////////// Query for news ////////////////////*/
 
@@ -164,9 +187,16 @@
 
         /*////////////////// Query for pagination  ////////////////////*/
 
-        public function count_pages($table){
+        public function count_pages_for_news(){
             return $this->query('
-                SELECT count(*) as `count` FROM `'.$table.'`
+                SELECT count(*) as `count` FROM `news`
+            ;');
+        }
+
+        public function count_pages_for_tovars_by_category($category_id){
+            return $this->query('
+                SELECT count(*) as `count` FROM `tovars`
+                    WHERE `category_id` = '.$category_id.'
             ;');
         }
 

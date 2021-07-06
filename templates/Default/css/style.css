@@ -98,8 +98,9 @@ table th,table td{
 /* HEADER =========================================== */
 
 header{    
-    background: #FF8300;
-    box-shadow: 1px 1px 4px 1px #777; 
+    background: #ffff;
+    /* box-shadow: 1px 1px 4px 1px #777;  */
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
     position: relative;
     min-height: 60px;
     display: flex;
@@ -115,7 +116,7 @@ header{
 .topmenu__link{
     display: inline-block;
     font-weight: bold;
-    color:#ffF;
+    color:#000;
     /* text-transform: uppercase; */
     text-decoration: none;
     padding: 10px 15px;
@@ -169,7 +170,7 @@ header{
     position: relative;
     width: 24px;
     height: 3px;
-    background-color: #fff;    
+    background-color: #000;    
 }
 
 .menu-icon::before {
@@ -179,7 +180,7 @@ header{
     content: "";
     width: 24px;
     height: 3px;
-    background-color: #fff;
+    background-color: #000;
     transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
 }
 
@@ -190,7 +191,7 @@ header{
     content: "";
     width: 24px;
     height: 3px;
-    background-color: #fff;
+    background-color: #000;
     transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
 }
 
@@ -317,12 +318,12 @@ header{
 .user-options{    
     display: flex;
     flex-direction: column;
-    background: #FF8300;
+    background: #fff;
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
     border-radius: 5px;
-    box-shadow: 1px 1px 4px 1px #777; 
+    box-shadow: 1px 1px 4px 1px #0000006b;
     z-index: 2;
     transition: transform .4s ease;
     transform-origin: center top;
@@ -403,20 +404,17 @@ main{
     box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
 }
 
-.tovar:nth-last-child(4):first-child, 
-.tovar:nth-last-child(4):first-child ~ .tovar{
-    flex:20% 1 0;
-    margin-bottom: 0px;
+.tovars-even .tovar{
+    flex:22% 1 0;
 }
-
-.tovar:nth-last-child(n+4),
-.tovar:nth-last-child(n+4) ~ .tovar {
+.tovars-odd .tovar{
     flex:30% 1 0;
 }
 
 .tovar__poster{
     display: block;
     width: 100%;
+    border-radius: 7px;
 }
 
 .tovar__name{
@@ -1046,10 +1044,8 @@ footer{
 
 @media (max-width: 850px) {
    /* TOVARS ************************************* */
-   .tovar:nth-last-child(4):first-child, 
-   .tovar:nth-last-child(4):first-child ~ .tovar{
+   .tovars-even .tovar{
        flex:45% 1 0;
-       margin-bottom: 0px;
    }
     
 }
@@ -1105,7 +1101,7 @@ footer{
         z-index: 1;
         height: calc(100vh - 100%);
         min-width: 200px;
-        background-color: #FF8300;
+        background-color: #fff;
         transform: scaleX(0);
         transition: transform .5s ease;        
     }
@@ -1148,12 +1144,7 @@ footer{
 @media (max-width: 590px) {
      /* TOVARS ************************************* */
 
-     .tovar{
+    .tovars-odd .tovar, .tovars-even .tovar{
         flex:100% 1 0;
-    }
-
-    .tovar:nth-last-child(n+4),
-    .tovar:nth-last-child(n+4) ~ .tovar {
-        flex:45% 1 0;
     }
 }

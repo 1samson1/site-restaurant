@@ -21,6 +21,6 @@
         
         'count_news_on_page' => 5,
         
-        'count_tovars_on_page' => 5,
+        'count_tovars_on_page' => 1,
     )
 ?>

@@ -22,6 +22,10 @@
         case 'profile':
             require_once ENGINE_DIR.'/modules/profile.php';
             break;
+
+        case 'category':
+            require_once ENGINE_DIR.'/modules/category.php';
+            break;
         
         case 'static':
             require_once ENGINE_DIR.'/modules/static.php';

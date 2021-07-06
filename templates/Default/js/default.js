@@ -32,5 +32,16 @@ $(function () {
         input.attr('type', type)
     })
 
+    /* TOVARS COUNT */
+
+    $('.tovars').each(function(){
+        if($(this).children('.container-body').children().length % 2 == 1){
+            $(this).addClass('tovars-odd')
+        }
+        else {
+            $(this).addClass('tovars-even')
+        }
+    });
+
     $('.opener').opener();
 })

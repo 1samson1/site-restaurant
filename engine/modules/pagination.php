@@ -9,14 +9,14 @@
         public $url;   
 
 
-        public function __construct($table, $url, $count_items_on_page){
+        public function __construct($counter, $url, $count_items_on_page){
             global $db;
 
             $this->active = isset($_GET['page'])? $_GET['page']: 1;
             $this->count_items_on_pages = $count_items_on_page;    
             $this->url = $url;    
 
-            $db->count_pages($table);
+            call_user_func($counter);
             if($table = $db->get_row()){
                 
                 if($table['count'] % $this->count_items_on_pages == 0) $this->count_pages = floor($table['count'] / $this->count_items_on_pages);
@@ -57,15 +57,15 @@
                     $tpl->set('[prev-link]', '');
                     $tpl->set('[/prev-link]', '');
                     $tpl->set('{first-page}', $this->url);
-                    $tpl->set('{prev-page}', $this->active == 2? $this->url: $this->url.'/page/'.($this->active - 1) );
+                    $tpl->set('{prev-page}', $this->active == 2? $this->url: $this->url.'/page/'.($this->active - 1).'/');
                 }
                 else $tpl->set_block('/\[prev-link\](.*)\[\/prev-link\]/s','');
 
                 if($this->active < $this->count_pages){
                     $tpl->set('[next-link]', '');
                     $tpl->set('[/next-link]', '');
-                    $tpl->set('{next-page}', $this->url.'/page/'.($this->active + 1));
-                    $tpl->set('{last-page}', $this->url.'/page/'.$this->count_pages);
+                    $tpl->set('{next-page}', $this->url.'/page/'.($this->active + 1).'/');
+                    $tpl->set('{last-page}', $this->url.'/page/'.$this->count_pages.'/');
                 }
                 else $tpl->set_block('/\[next-link\](.*)\[\/next-link\]/s','');
                 
@@ -74,7 +74,7 @@
                         $pages .= '<span>'.$i.'</span>'; 
                     }
                     else { 
-                        $pages .= '<a href="'.($i == 1? $this->url : $this->url.'/page/'.$i).'">'.$i.'</a>';
+                        $pages .= '<a href="'.($i == 1? $this->url : $this->url.'/page/'.$i.'/').'">'.$i.'</a>';
                     }
                 }
 

@@ -199,7 +199,7 @@
                     $this->load($custom_template);
 
                     while($tovar = $db->get_row()){
-                        $this->set('{poster}', $tovar['poster']);
+                        $this->set('{poster}', '/'.$tovar['poster']);
                         $this->set('{name}', $tovar['name']);
                         $this->set('{description}', $tovar['description']);
                         $this->set('{prace}', $tovar['prace']);
