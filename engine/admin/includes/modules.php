@@ -12,7 +12,7 @@
         }
 
         public static function load($path,$name){
-            global $config, $tpl, $db, $head, $crumbs, $alerts;
+            global $config, $tpl, $db, $head, $crumbs, $alerts, $genders;
 
             define('MODULE_DIR', $path.'/'.$name);
             define('MODULE_SKIN_DIR', MODULE_DIR.'/skin');

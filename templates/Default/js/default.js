@@ -11,6 +11,20 @@ $(function () {
     })
     
     /* FORM INPUTS SCRIPTS +++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+    $('.form-control').each(function () {
+        if($(this).val()){
+            $(this).parent().addClass('form-group-active')
+        }
+    })
+    $('.form-control').on('focus',function () {        
+        $(this).parent().addClass('form-group-active')
+    })
+    $('.form-control').on('blur',function () {
+        if(!$(this).val()){
+            $(this).parent().removeClass('form-group-active')
+        }
+    })
     
     $('.form-group-password .password-show').on('click',function () {        
         $(this).toggleClass('password-show-hidden')
@@ -31,4 +45,5 @@ $(function () {
     });
 
     $('.opener').opener();
+    $('select').niceSelect();
 })

@@ -45,7 +45,20 @@
 
                 if(!isset($alerts->alerts_array[0])){
 
-                    if($db->edit_user($user['id'], $_POST['group'], $_POST['name'], $_POST['surname'], $_POST['login'], $_POST['email'], $_POST['password'], $foto->filepath, isset($_POST['delete_foto']))){
+                    if($db->edit_user(
+                        $user['id'],
+                        $_POST['group'],
+                        $_POST['name'],
+                        $_POST['surname'],
+                        $_POST['login'],
+                        $_POST['email'],
+                        $_POST['phone'],
+                        $_POST['gender'],
+                        $_POST['adress'],
+                        $_POST['password'],
+                        $foto->filepath,
+                        isset($_POST['delete_foto'])
+                    )){
                         
                         if(isset($_POST['delete_foto'])){
                             delete_file($user['foto']);
@@ -71,6 +84,9 @@
             $tpl->set('{group}', $user['group_name']);
             $tpl->set('{surname}', $user['surname']);
             $tpl->set('{name}', $user['name']);
+            $tpl->set('{gender}', $user['gender']);
+            $tpl->set('{phone}', $user['phone']);
+            $tpl->set('{adress}', $user['adress']);
             
             if($user['foto']) $foto = '/'.$user['foto'];
             else $foto = '{SKIN}/img/noavatar.png';
@@ -81,6 +97,11 @@
                 $groups .= '<option value="'.$group['id'].'" '.($group['id'] == $user['group_id']?'selected':'').'>'.$group['group_name'].'</option>';
             }
             $tpl->set('{groups}', $groups);
+
+            foreach($genders as $key => $value){
+                $genders_tpl .= '<option value="'.$key.'" '.($key == $user['gender']?'selected':'').'>'.$value.'</option>';
+            }
+            $tpl->set('{genders}', $genders_tpl);
             
 
             $tpl->save('{content}');
@@ -100,11 +121,23 @@
 
 			$alerts->set_error_if(!CheckField::empty($_POST['password']), 'Ошибка регистрации', 'Вы не ввели пароль', 203);
 
+            $alerts->set_error_if(!CheckField::empty($_POST['phone']), 'Ошибка регистрации', 'Вы не ввели моб. номер', 203);
+
 			$alerts->set_error_if(!CheckField::confirm_pass($_POST['password'],$_POST['repassword']), 'Ошибка регистрации', 'Пароль не совпадает с формой подтверждения', 204);
 
 			if(!isset($alerts->alerts_array[0])){
 
-				if($db->reg_user($_POST['group'], $_POST['login'], $_POST['name'], $_POST['surname'], $_POST['login'], $_POST['email'], $_POST['password'])){
+				if($db->reg_user(
+                    $_POST['group'],
+                    $_POST['name'],
+                    $_POST['surname'],
+                    $_POST['login'],
+                    $_POST['email'],
+                    $_POST['phone'],
+					$_POST['gender'],
+					$_POST['adress'],
+                    $_POST['password']
+                )){
 					
                    return showSuccess('Пользователь добавлен!','Успешно добавлен пользователь!', MODULE_URL);
 
@@ -121,6 +154,11 @@
             $groups .= '<option value="'.$group['id'].'" '.($group['id'] == $config['reg_user_group']?'selected':'').'>'.$group['group_name'].'</option>';
         }
         $tpl->set('{groups}', $groups);
+
+        foreach($genders as $key => $value){
+            $genders_tpl .= '<option value="'.$key.'" '.($key == $user['gender']?'selected':'').'>'.$value.'</option>';
+        }
+        $tpl->set('{genders}', $genders_tpl);
 
         $tpl->save('{content}');
 

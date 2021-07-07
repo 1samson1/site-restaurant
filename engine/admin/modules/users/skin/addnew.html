@@ -7,40 +7,43 @@
                     <label for="add_login">Логин:</label>
                     <input type="text" name="login" id="add_login" class="form-control form-control-large" required>
                 </div>
-            </div>
-            <div class="form-groups-w20">
                 <div class="form-group">
                     <label for="add_email">E-mail:</label>
                     <input type="email" name="email" id="add_email" class="form-control form-control-large" required>
                 </div>
-            </div>
-            <div class="form-groups-w20">
                 <div class="form-group">
                     <label for="add_group">Группа:</label>
                     <select name="group" class="right wide" id="add_group" required>
                         {groups}
                     </select>
                 </div>
-            </div>
-            <div class="form-groups-w20">
                 <div class="form-group">
                     <label for="add_surname">Фамилия:</label>
                     <input type="text" name="surname" id="add_surname" class="form-control form-control-large">
                 </div>
-            </div>
-            <div class="form-groups-w20">
                 <div class="form-group">
                     <label for="add_name">Имя:</label>
                     <input type="text" name="name" id="add_name" class="form-control form-control-large">
                 </div>
-            </div>
-            <div class="form-groups-w20">
+                <div class="form-group">
+                    <label for="edit_phone">Моб. номер:</label>
+                    <input type="text" data-tel-input name="phone" id="edit_phone" class="form-control form-control-large"  required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_gender">Пол:</label>
+                    <select name="gender" class="right wide" id="edit_gender">
+                        <option value="none">Не выбрано</option>
+                        {genders}
+                    </select>
+                </div>  
+                <div class="form-group">
+                    <label for="edit_adress">Адрес:</label>
+                    <input type="text" name="adress" id="edit_adress" class="form-control form-control-large">
+                </div>
                 <div class="form-group">
                     <label for="add_password">Пароль:</label>
                     <input type="password" name="password" id="add_password" class="form-control form-control-large" required>
                 </div>
-            </div>
-            <div class="form-groups-w20">
                 <div class="form-group">
                     <label for="add_repassword">Подтверждение пароля:</label>
                     <input type="password" name="repassword" id="add_repassword" class="form-control form-control-large" required>

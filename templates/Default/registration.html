@@ -1,29 +1,48 @@
 <div class="container-fill container-reg">
     <div class="container-header">Регистрация</div>               
     <form action="" class="reg-form" method="POST">
-        <div class="form-control form-control-large">
-            <input type="text" name="login" id="login" required>                        
+        <div class="form-group form-group-large">
+            <input type="text" name="login" id="login" class="form-control" required>                        
             <label for="login">Логин</label>                                            
         </div>
-        <div class="form-control form-control-large">
-            <input type="email" name="email" id="email" required>                        
+        <div class="form-group form-group-large">
+            <input type="email" name="email" id="email" class="form-control" required>                        
             <label for="email">E-mail</label>                                            
-        </div>     
-        <div class="form-control form-control-large">
-            <input type="text" name="name" id="name" required>                        
-            <label for="name">Имя</label>                                            
         </div>
-        <div class="form-control form-control-large">
-            <input type="text" name="surname" id="surname" required>                        
-            <label for="surname">Фамилия</label>                                            
+        <div class="form-groups-inline">
+            <div class="form-group form-group-large">
+                <input type="text" name="name" id="name" class="form-control" required>                        
+                <label for="name">Имя</label>                                            
+            </div>
+            <div class="form-group form-group-large">
+                <input type="text" name="surname" id="surname" class="form-control" required>                        
+                <label for="surname">Фамилия</label>                                            
+            </div>
         </div>
-        <div class="form-control form-control-password form-control-large">
-            <input type="password" name="password" id="password" required>                        
+        <div class="form-groups-inline">
+            <div class="form-group form-group-large">
+                <input type="text" data-tel-input name="phone" maxlength="18" id="pf-phone" class="form-control" required>                        
+                <label for="pf-phone">Моб.телефон</label>    
+            </div>
+            <div class="form-group form-group-large form-group-active">
+                <select name="gender" id="pf-gender" class="form-control">
+                    <option value="none">Не выбрано</option>
+                    {genders}
+                </select>
+                <label for="pf-gender">Пол</label>  
+            </div>        
+        </div>
+        <div class="form-group form-group-large">
+            <input type="text" name="adress" id="pf-adress" class="form-control">                        
+            <label for="pf-adress">Адрес</label>  
+        </div>  
+        <div class="form-group form-group-password form-group-large">
+            <input type="password" name="password" id="password" class="form-control" required>                        
             <label for="password">Пароль</label>         
             <div class="password-show"></div>                                   
         </div>
-        <div class="form-control form-control-password form-control-large">
-            <input type="password" name="repassword" id="repassword" required>                        
+        <div class="form-group form-group-password form-group-large">
+            <input type="password" name="repassword" id="repassword" class="form-control" required>                        
             <label for="repassword">Подтверждение пароля</label>     
             <div class="password-show"></div>                                       
         </div>

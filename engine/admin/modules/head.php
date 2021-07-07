@@ -14,6 +14,8 @@ $head = <<<HTML
 
 <script src="{SKIN}/js/opener.js"></script>
 
+<script src="{SKIN}/js/phoneinput.js"></script>
+
 <link rel="stylesheet" href="{SKIN}/css/nice-select.css">    
 <script src="{SKIN}/js/jquery.nice-select.js"></script>
 

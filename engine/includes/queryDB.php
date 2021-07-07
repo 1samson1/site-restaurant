@@ -5,14 +5,25 @@
 
         /*////////////////// Query for users tools  ////////////////////*/
 
-        public function reg_user($group_id, $name, $surname, $login, $email, $pass){            
+        public function reg_user($group_id, $name, $surname, $login, $email, $phone, $gender, $adress, $pass){            
             return $this->query('
-                INSERT INTO `users` (`group_id`,`name`,`surname`,`login`,`email`,`password`,`date_reg`) 
-                    VALUE ("'.$group_id.'","'.$this->ecran_html($name).'","'.$this->ecran_html($surname).'","'.$this->ecran_html($login).'","'.$this->ecran_html($email).'","'.$this->hash($this->ecran_html($pass)).'","'.time().'")
+                INSERT INTO `users` (`group_id`,`name`,`surname`,`login`,`email`, `phone`, `gender`, `adress`, `password`,`date_reg`) 
+                    VALUE (
+                        "'.$group_id.'",
+                        "'.$this->ecran_html($name).'",
+                        "'.$this->ecran_html($surname).'",
+                        "'.$this->ecran_html($login).'",
+                        "'.$this->ecran_html($email).'",
+                        "'.$this->ecran_html($phone).'",
+                        "'.$this->ecran_html($gender).'",
+                        "'.$this->ecran_html($adress).'",
+                        "'.$this->hash($this->ecran_html($pass)).'",
+                        "'.time().'"
+                    )
             ;');
         }
         
-        public function check_user($login){
+        public function get_user($login){
             return $this->query('
                 SELECT `users`.*, `groups`.`group_name`, `groups`.`id` AS `group_id` FROM `users`
                     INNER JOIN `groups` ON `users`.`group_id` = `groups`.`id` 
@@ -20,7 +31,7 @@
             ;');
         }
 
-        public function update_user($user_id, $name, $surname, $login, $email, $pass, $foto=false, $delete_foto=false){
+        public function update_user($user_id, $name, $surname, $login, $email, $phone, $gender, $adress, $pass, $foto=false, $delete_foto=false){
             $pass = isset($pass[0])?', `users`.`password` = "'.$this->hash($this->ecran_html($pass)).'"' :'';
             if($delete_foto){
                 $foto = ', `users`.`foto` = ""';
@@ -37,7 +48,10 @@
                         `users`.`name` = "'.$this->ecran_html($name).'",
                         `users`.`surname` = "'.$this->ecran_html($surname).'",
                         `users`.`login` = "'.$this->ecran_html($login).'",
-                        `users`.`email` = "'.$this->ecran_html($email).'" 
+                        `users`.`email` = "'.$this->ecran_html($email).'",
+                        `users`.`phone` = "'.$this->ecran_html($phone).'",
+                        `users`.`gender` = "'.$this->ecran_html($gender).'", 
+                        `users`.`adress` = "'.$this->ecran_html($adress).'"
                         '.$pass.'
                         '.$foto.'
                     WHERE `users`.`id` = "'.$user_id.'"
@@ -286,7 +300,7 @@
             ;');
         }       
 
-        public function edit_user($user_id, $group_id, $name, $surname, $login, $email, $pass, $foto=false, $delete_foto=false){
+        public function edit_user($user_id, $group_id, $name, $surname, $login, $email, $phone, $gender, $adress, $pass, $foto=false, $delete_foto=false){
             $pass = isset($pass[0])?', `users`.`password` = "'.$this->hash($this->ecran_html($pass)).'"' :'';
             if($delete_foto){
                 $foto = ', `users`.`foto` = ""';
@@ -305,6 +319,9 @@
                         `users`.`surname` = "'.$this->ecran_html($surname).'",
                         `users`.`login` = "'.$this->ecran_html($login).'",
                         `users`.`email` = "'.$this->ecran_html($email).'",
+                        `users`.`phone` = "'.$this->ecran_html($phone).'",
+                        `users`.`gender` = "'.$this->ecran_html($gender).'",
+                        `users`.`adress` = "'.$this->ecran_html($adress).'",
                         `users`.`group_id` = "'.$this->ecran_html($group_id).'" 
                         '.$pass.'
                         '.$foto.'

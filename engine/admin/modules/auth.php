@@ -24,7 +24,7 @@
 
             if(!isset($alerts->alerts_array[0])){
 
-                $db->check_user($_POST['login']);
+                $db->get_user($_POST['login']);
                 if($user = $db->get_row()){
 
                     if($user['group_id'] == $config['admin_group']){

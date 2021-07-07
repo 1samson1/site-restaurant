@@ -3,6 +3,8 @@
     session_start();
     
     require_once ENGINE_DIR.'/data/config.php'; // Подключаем глобальный конфиг
+
+    require_once ENGINE_DIR.'/data/data.php'; // Подключаем всевозможные словари
     
     ini_set('date.timezone', $config['timezone']); // Инициализания часового пояса
 

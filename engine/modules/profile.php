@@ -3,7 +3,7 @@
 	require_once ENGINE_DIR.'/includes/checkFeild.php';	
 	require_once ENGINE_DIR.'/includes/errors.php';	
 
-	$db->check_user($_GET['param1']);
+	$db->get_user($_GET['param1']);
 	if($user = $db->get_row()){
 		/* edit user */
 
@@ -13,6 +13,8 @@
 				$alerts->set_error_if(!CheckField::login($_POST['login']), 'Ошибка изменения данных пользователя', 'Некорректный логин', 201);
 
 				$alerts->set_error_if(!CheckField::email($_POST['email']), 'Ошибка изменения данных пользователя', 'Некорректный email', 202);
+
+				$alerts->set_error_if(!CheckField::empty($_POST['phone']), 'Ошибка изменения данных пользователя', 'Вы не ввели моб. номер', 203);
 
 				if(isset($_POST['password'][0]) || isset($_POST['repassword'][0]) || isset($_POST['lastpassword'][0])){
 					$alerts->set_error_if(!CheckField::confirm_hash($_POST['lastpassword'],$user['password']), 'Ошибка изменения данных пользователя', 'Пароль не совпадает с предыдущим', 212);
@@ -26,12 +28,26 @@
 
 				if(!isset($alerts->alerts_array[0])){
 
-					if($db->update_user($user['id'], $_POST['name'], $_POST['surname'], $_POST['login'], $_POST['email'], $_POST['password'], $foto->filepath, isset($_POST['delete_foto']))){
+					if($db->update_user(
+						$user['id'], $_POST['name'],
+						$_POST['surname'],
+						$_POST['login'],
+						$_POST['email'],
+						$_POST['phone'],
+						$_POST['gender'],
+						$_POST['adress'],						
+						$_POST['password'],
+						$foto->filepath,
+						isset($_POST['delete_foto'])
+					)){
 						$alerts->set_success('Данные профиля обновлены', 'Данные профиля успешно обновлены!');
 						$user['name'] = $_POST['name'];
 						$user['surname'] = $_POST['surname'];
 						$user['login'] = $_POST['login'];
 						$user['email'] = $_POST['email'];
+						$user['phone'] =$_POST['phone'];
+						$user['gender'] =$_POST['gender'];
+						$user['adress'] =$_POST['adress'];	
 
 						if(isset($_POST['delete_foto'])){
 							delete_file($user['foto']);
@@ -57,8 +73,16 @@
 		$tpl->set('{email}', $user['email']);
 		$tpl->set('{name}', $user['name']);
 		$tpl->set('{surname}', $user['surname']);
+		$tpl->set('{phone}', $user['phone']);
+		$tpl->set('{gender}', $genders[$user['gender']] ? $genders[$user['gender']] : 'Не выбрано');
+		$tpl->set('{adress}', $user['adress']);
 		$tpl->set('{date-reg}', date('d.m.Y', $user['date_reg']));
 		$tpl->set('{group}',$user['group_name']);
+
+		foreach($genders as $key => $value){
+			$genders_tpl .= '<option value="'.$key.'" '.($key == $user['gender']?'selected':'').'>'.$value.'</option>';
+		}
+		$tpl->set('{genders}', $genders_tpl);
 
         if($user['foto']) $foto = '/'.$user['foto'];
         else $foto = '{TEMPLATE}/img/noavatar.png';

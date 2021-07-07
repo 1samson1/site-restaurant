@@ -13,6 +13,9 @@
                     <div  class="profile-field"><span>Группа:</span>{group}</div>
                 </div>
                 <div class="profile-fields">
+                    <div  class="profile-field"><span>Пол:</span>{gender}</div>
+                </div>
+                <div class="profile-fields">
                     <div  class="profile-field"><span>Дата регистрации:</span>{date-reg}</div>
                 </div>
             </div>
@@ -26,20 +29,41 @@
                 <div class="title-section">Информация</div>
                 <div class="form-groups-inline">
                     <div class="form-group form-group-large">
-                        <input type="text" name="login" id="pf-login" class="form-control" placeholder="Логин" required value="{login}">                        
+                        <input type="text" name="login" id="pf-login" class="form-control" required value="{login}">                        
+                        <label for="pf-login">Логин</label>      
                     </div>
                     <div class="form-group form-group-large">
-                        <input type="email" name="email" id="pf-email" class="form-control" placeholder="E-mail" required value="{email}">                        
+                        <input type="email" name="email" id="pf-email" class="form-control" required value="{email}">                        
+                        <label for="pf-email">E-mail</label>  
                     </div>
                 </div>
                 <div class="form-groups-inline">
                     <div class="form-group form-group-large">
-                        <input type="text" name="name" id="pf-name" class="form-control" placeholder="Имя"  value="{name}">                        
+                        <input type="text" name="name" id="pf-name" class="form-control" value="{name}">                        
+                        <label for="pf-name">Имя</label>    
                     </div>
                     <div class="form-group form-group-large">
-                        <input type="text" name="surname" id="pf-surname" class="form-control" placeholder="Фамилия" value="{surname}">                        
+                        <input type="text" name="surname" id="pf-surname" class="form-control" value="{surname}">                        
+                        <label for="pf-surname">Фамилия</label>  
                     </div>        
                 </div>
+                <div class="form-groups-inline">
+                    <div class="form-group form-group-large">
+                        <input type="text" data-tel-input name="phone" maxlength="18" id="pf-phone" class="form-control" value="{phone}" required>                        
+                        <label for="pf-phone">Моб.телефон</label>    
+                    </div>
+                    <div class="form-group form-group-large form-group-active">
+                        <select name="gender" id="pf-gender" class="form-control">
+                            <option value="none">Не выбрано</option>
+                            {genders}
+                        </select>
+                        <label for="pf-gender">Пол</label>  
+                    </div>        
+                </div>
+                <div class="form-group form-group-large">
+                    <input type="text" name="adress" id="pf-adress" class="form-control" value="{adress}">                        
+                    <label for="pf-adress">Адрес</label>  
+                </div>  
                 <div class="title-section">Фото</div>
                 <div class="form-group form-group-large">
                     <input type="file" class="form-control" name="foto" accept="image/*">
@@ -51,16 +75,19 @@
                 </label>
                 <div class="title-section">Смена пароля</div>
                 <div class="form-group form-group-password form-group-large">
-                    <input type="password" name="lastpassword" id="lastpassword" class="form-control" placeholder="Старый пароль">                        
+                    <input type="password" name="lastpassword" id="lastpassword" class="form-control">                        
+                    <label for="lastpassword">Старый пароль</label> 
                     <div class="password-show"></div>                                   
                 </div>
                 <div class="form-groups-inline">
                     <div class="form-group form-group-password form-group-large">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Новый пароль">                        
+                        <input type="password" name="password" id="password" class="form-control">                        
+                        <label for="password">Новый пароль</label>
                         <div class="password-show"></div>                                   
                     </div>
                     <div class="form-group form-group-password form-group-large">
-                        <input type="password" name="repassword" id="repassword" class="form-control" placeholder="Подтверждение пароля">                        
+                        <input type="password" name="repassword" id="repassword" class="form-control">                        
+                        <label for="repassword">Подтверждение пароля</label>     
                         <div class="password-show"></div>                                       
                     </div>
                 </div>

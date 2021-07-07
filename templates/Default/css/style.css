@@ -463,8 +463,10 @@ main{
 }
 
 /* REGISTRATION +++++++++++++++++++++++++++++++++++++ */
-.container-reg .form-control{
-    margin: 7px 0;
+
+.container-reg{
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .container-reg .container-header{
@@ -475,7 +477,7 @@ main{
 .reg-form{
     display: flex;    
     flex-direction: column;
-    padding: 15px 25px;
+    padding: 15px 10px;
 }
 
 /* PROFILE +++++++++++++++++++++++++++++++++++++ */
@@ -798,6 +800,24 @@ footer{
     margin-bottom: 5px;
 }
 
+.form-group label{
+    position: absolute;
+    user-select: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #8e8e8e;    
+    height: 36px;
+    left: 8px;
+    top:7px;
+    line-height: 36px;
+    overflow: hidden;
+    pointer-events: none;    
+    right: 5px;
+    text-overflow: ellipsis;    
+    transform-origin: left;    
+    white-space: nowrap;  
+    transition:transform .3s ease;  
+}
 
 .form-control{    
     background: #fafafa;    
@@ -805,7 +825,7 @@ footer{
     font-size: 1rem;   
     margin: 0;
     outline: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 14px 0 12px 8px;
     text-overflow: ellipsis;    
     border-radius: 7px;
@@ -813,9 +833,21 @@ footer{
     box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
 }
 
+.form-control:hover{    
+    border: 2px solid #FFA240; 
+}
+
 .form-control:focus{
     outline: 0;
-    border: 2px solid #000000; 
+    border: 2px solid #ff7b00; 
+}
+
+.form-group-active .form-control{    
+    padding: 24px 0 2px 8px!important;
+}
+
+.form-group-active label{  
+    transform: scale(.83333) translateY(-10px) !important;
 }
 
 .form-group-large, .form-group-large .form-control{
@@ -852,12 +884,12 @@ footer{
     display: flex;
 }
 
-.form-groups-inline .form-groups:nth-child(2n){
+.form-groups-inline .form-group:nth-child(2n){
     margin-left: 5px;
 }
 
-.form-control[type=file]{
-    padding: 0;
+.form-control[type=file], .form-group-active .form-control[type=file]{
+    padding: 0 !important;
 }
 
 .form-control::file-selector-button {
@@ -964,7 +996,8 @@ footer{
     height: 1.1rem;
     background: #77777725;   
     border:0.1rem solid #FF8300;
-    box-sizing: border-box;     
+    box-sizing: border-box;    
+    border-radius: 3px; 
 }
 
 .check-input:checked + .check {
@@ -1042,18 +1075,6 @@ footer{
     main{
         padding-top: 85px;
     }    
-
-    
-        
-    /* INPUTS ************************************* */
-
-    .form-controls-inline{
-        display: block;
-    }
-
-    .form-controls-inline .form-control:nth-child(2n){
-        margin-left: 0;
-    }
 
     /* HAMBURGER MENU ***************************** */
     .menu-button{

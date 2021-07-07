@@ -25,6 +25,21 @@
                     <label for="edit_name">Имя:</label>
                     <input type="text" name="name" id="edit_name" class="form-control form-control-large"  value="{name}">
                 </div>
+                <div class="form-group">
+                    <label for="edit_phone">Моб. номер:</label>
+                    <input type="text" data-tel-input name="phone" id="edit_phone" class="form-control form-control-large"  value="{phone}" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_gender">Пол:</label>
+                    <select name="gender" class="right wide" id="edit_gender">
+                        <option value="none">Не выбрано</option>
+                        {genders}
+                    </select>
+                </div>  
+                <div class="form-group">
+                    <label for="edit_adress">Адрес:</label>
+                    <input type="text" name="adress" id="edit_adress" class="form-control form-control-large"  value="{adress}">
+                </div>
                 <div class="form-group">   
                     <label>Фото:</label> 
                     <div class="wrapper">
