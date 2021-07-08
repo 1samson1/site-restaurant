@@ -2,7 +2,47 @@
 
     $db->get_category_by_url($_GET['param1']);
 
-    if($category = $db->get_row()){
+
+    if(isset($_GET['param1'])){
+
+        $db->get_tovar($_GET['param1']);
+        if($tovar = $db->get_row()){
+
+            $tpl->load('fulltovar.html');
+            
+            $tpl->set('{poster}', '/'.$tovar['poster']);
+            $tpl->set('{name}', $head['title'] = $tovar['name']);
+            $tpl->set('{description}', $tovar['description']);
+            $tpl->set('{prace}', $tovar['prace']);            
+
+            if($tovar['discount']){
+
+                $tpl->set_block('not-discount','');
+                $tpl->set('[discount]','');
+                $tpl->set('[/discount]','');
+                $tpl->set('{discount}', $tovar['discount']);
+
+            } else {
+
+                $tpl->set_block('discount','');
+                $tpl->set('[not-discount]','');
+                $tpl->set('[/not-discount]','');
+
+            }
+
+        } else {
+            $alerts->set_error('Oшибка', 'Такого товара не существует!', 404);
+            $head['title'] = 'Товар не найден!';
+        }
+
+    } else {
+
+    }
+
+    $tpl->save('{content}');
+
+
+    /* if($category = $db->get_row()){
         require_once ENGINE_DIR.'/modules/pagination.php';
 
         $pagination = new Pagination(
@@ -20,8 +60,7 @@
             $tpl->set('{poster}', '/'.$tovar['poster']);
             $tpl->set('{name}', $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
-            $tpl->set('{prace}', $tovar['prace']);     
-            $tpl->set('{tovar-link}', '/tovars/'.$tovar['id'].'/');       
+            $tpl->set('{prace}', $tovar['prace']);            
 
             if($tovar['discount']){
 
@@ -47,7 +86,7 @@
         
 
         $tpl->load('category.html');    
-        $tpl->save('{content}');
+        
     
         $tpl->set('{category-name}',$head['title'] = $category['name']);
 
@@ -55,7 +94,7 @@
         $alerts->set_error('Oшибка', 'Такой категории не существует!', 404);
         $head['title'] = 'Категория не найдена!';
     }
-    $tpl->load('shorttovar.html');
+    $tpl->load('shorttovar.html'); */
 
 
 

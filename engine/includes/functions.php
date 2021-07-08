@@ -36,6 +36,7 @@
             $tpl->set('{name}', $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
             $tpl->set('{prace}', $tovar['prace']);
+            $tpl->set('{tovar-link}', '/tovars/'.$tovar['id'].'/');
 
             if($tovar['discount']){
 

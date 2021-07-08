@@ -129,6 +129,17 @@
             ;');
         }
 
+        public function get_tovar($id){
+            return $this->query('
+                SELECT 
+                    `tovars`.*
+                FROM `tovars`
+                    WHERE `tovars`.`id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+
+
         public function get_tovars_by_category($category_id, $count, $begin=0){
             return $this->query('
                 SELECT 

@@ -1,5 +1,5 @@
 $(function(){   
-    $('.static-body img').each(function () {
+    $('.static-body img, .tovar img').each(function () {
         $(this).attr({style:'cursor:zoom-in'})
         $(this).on('click', function () {
             $("<div/>")

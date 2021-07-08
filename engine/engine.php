@@ -34,6 +34,10 @@
         case 'news':
             require_once ENGINE_DIR.'/modules/news.php';
             break;
+
+        case 'tovars':
+            require_once ENGINE_DIR.'/modules/tovars.php';
+            break;
         
         default:
             $alerts->set_error('Oшибка', 'Такой страницы или файла не существует!', 404);
