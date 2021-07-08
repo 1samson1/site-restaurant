@@ -1,11 +1,14 @@
-<a href="#" class="tovar">
-    <img src="{poster}" alt="" srcset="" class="tovar__poster">
-    <div class="tovar__info">
-        <div class="tovar__name">{name}</div>
-        <div class="tovar__description">{description}</div>
+<a href="#" class="short-tovar">
+    <img src="{poster}" alt="" srcset="" class="short-tovar__poster">
+    <div class="short-tovar__info">
+        <div class="short-tovar__name">{name}</div>
+        <div class="short-tovar__description">{description}</div>
     </div>
-    <div class="tovar__buy">
-        <div class="tovar__prace">{prace} руб.</div>
+    <div class="short-tovar__buy">
+        <div class="short-tovar__prace">
+            [not-discount] <span class="prace">{prace} руб.</span>[/not-discount]
+            [discount] <span class="discount">{discount} руб. <span class="prace">{prace} руб.</span></span>[/discount]           
+        </div>
         <button class="btn">Купить</button>
     </div>
 </a>

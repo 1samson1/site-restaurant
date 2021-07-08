@@ -1,4 +1,7 @@
 <?php
+
+    require_once ENGINE_DIR.'/includes/functions.php'; 
+
     class Template{
 
         public $dir = '';
@@ -21,11 +24,13 @@
             else $this->dir = ROOT_DIR.'/templates/'.$config['template'];
         }
         
-        public function set($tag,$value){        
+        public function set($tag,$value=''){        
             $this->data[$tag] = $value;
         }
 
-        public function set_block($block,$value){    
+        public function set_block($block, $value, $flags="sU"){    
+            $block = '/\['.$block.'\](.*)\[\/'.$block.'\]/'.$flags;
+
             $this->data_block[$block] = $value;
         }
 
@@ -53,8 +58,10 @@
 
         public function replace_tags($template){
             foreach($this->data as $tag => $value){
-                $template = str_replace($tag, $value, $template);
-                unset($this->data_block[$tag]);
+                if( strpos($template, $tag)  !== false ){
+                    $template = str_replace($tag, $value, $template);
+                    unset($this->data[$tag]);
+                }                
             }
 
             return $template;
@@ -173,47 +180,7 @@
         private function custom(){
             $this->template = preg_replace_callback(
                 '/\{custom(.+?)\}/is',
-                function ($matches){
-                    global $config, $db;
-
-                    $params = $matches[1];
-
-                    if( preg_match( "/category=['\"](.+?)['\"]/i", $params, $match ) ) {
-                        $custom_category = trim($match[1]);
-                    } else $custom_category = "";
-
-                    if( preg_match( "/template=['\"](.+?)['\"]/i", $params, $match ) ) {
-                        $custom_template = trim($match[1]);
-                    } else $custom_template = "shortnews.html";
-
-                    if( preg_match( "/limit=['\"](.+?)['\"]/i", $params, $match ) ) {
-                        $custom_limit = intval($match[1]);
-                    } else $custom_limit = $config['count_tovars_on_page'];
-
-                    if( preg_match( "/sort=['\"](.+?)['\"]/i", $params, $match ) ) {
-                        $custom_sort = trim($match[1]);
-                    } else $custom_sort = "ASC";
-
-                    $db->get_custom($custom_limit, $custom_category, $custom_sort);
-
-                    $this->load($custom_template);
-
-                    while($tovar = $db->get_row()){
-                        $this->set('{poster}', '/'.$tovar['poster']);
-                        $this->set('{name}', $tovar['name']);
-                        $this->set('{description}', $tovar['description']);
-                        $this->set('{prace}', $tovar['prace']);
-
-                        $this->copy_tpl();
-                    }                    
-
-                    $temp = $this->copy_template;
-
-                    $this->copy_template = null;
-
-                    return $temp;
-
-                },
+                'custom',
                 $this->template
             );
         }

@@ -20,7 +20,22 @@
             $tpl->set('{poster}', '/'.$tovar['poster']);
             $tpl->set('{name}', $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
-            $tpl->set('{prace}', $tovar['prace']);
+            $tpl->set('{prace}', $tovar['prace']);            
+
+            if($tovar['discount']){
+
+                $tpl->set_block('not-discount','');
+                $tpl->set('[discount]','');
+                $tpl->set('[/discount]','');
+                $tpl->set('{discount}', $tovar['discount']);
+
+            } else {
+
+                $tpl->set_block('discount','');
+                $tpl->set('[not-discount]','');
+                $tpl->set('[/not-discount]','');
+
+            }
 
             $tpl->copy_tpl();
         }     
