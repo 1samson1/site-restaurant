@@ -98,8 +98,7 @@ table th,table td{
 /* HEADER =========================================== */
 
 header{    
-    background: #ffff;
-    /* box-shadow: 1px 1px 4px 1px #777;  */
+    background: #ffff;   
     box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
     position: relative;
     min-height: 60px;
@@ -309,8 +308,8 @@ header{
     margin-right: 7px;
     width: 30px;
     height: 30px;
-    border:1px solid #eee;
-    background: #fff;
+    border:1px solid #c8d0e7;
+    background: #fff;    
 }
 
 #user-panel:focus{
@@ -326,7 +325,7 @@ header{
     top: calc(100% + 10px);
     right: 0;
     border-radius: 5px;
-    box-shadow: 1px 1px 4px 1px #0000006b;
+    box-shadow: 1px 1px 4px 1px #c8d0e7;
     z-index: 2;
     transition: transform .4s ease;
     transform-origin: center top;
@@ -495,14 +494,22 @@ main{
 
 .tovar__name{
     font-size: 2.2rem;
-    padding-bottom: 30px;
-    /* text-align: center; */
+    padding-bottom: 30px;    
 }
 
 .tovar__prace{
     font-size: 2rem;
-    padding: 10px 0;
-    /* text-align: center; */
+    padding: 10px 0;    
+}
+
+.tovar__buy{    
+    display: flex;
+    gap: 7px;
+}
+
+.tovar__buy .btn{
+    flex-grow: 1;
+    margin-top: 0;
 }
 
 .tovar__description span{
@@ -519,6 +526,32 @@ main{
 .tovar__description p{
     color: #777;
     /* text-align: justify; */
+}
+
+/* PLUS MINUS +++++++++++++++++++++++++++++++++++++++ */
+
+.plus-minus{
+    display: flex;
+    border-radius: 7px;
+    overflow: hidden;  
+    box-shadow: 1px 1px 3px 1px #c8d0e7;
+}
+
+.plus-minus .btn{
+    box-shadow: none;
+}
+
+.plus-minus .plus-minus__feild{
+    transition: border-color .3s ease;
+    border: 2px solid #DBDBDB;
+    width: 5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-color: #DC3545;
+}
+
+.plus-minus .plus-minus__feild:focus{
+    outline: 0;
 }
 
 /* ALERTS +++++++++++++++++++++++++++++++++++++++++++ */
@@ -662,17 +695,13 @@ main{
     margin-bottom: 20px !important;
 }
 
-.date-news, .comments-news, .autor-news{
+.date-news, .autor-news{
     background-size: 1em;
     padding-left: 1.3em;
 }
 
 .date-news{
     background: url(../img/alarm.svg) no-repeat left center;
-}
-
-.comments-news{
-    background: url(../img/chat-dots.svg) no-repeat left center;
 }
 
 .autor-news{
@@ -747,6 +776,7 @@ main{
 
 .container-comments{
     padding: 15px 20px;
+
 }
 
 .title-comments{
@@ -760,7 +790,7 @@ main{
     background: #00000010;
     border-radius: 7px;
     padding: 7px;
-    box-shadow: 1px 1px 4px 1px #aaa; 
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
     margin-bottom: 15px;
 }
 
@@ -774,7 +804,7 @@ main{
     margin-right: 10px;
     border-radius: 50%;
     border:5px solid #eee;
-    box-shadow: 1px 1px 4px 1px #777; 
+    box-shadow: 1px 1px 4px 1px #c8d0e7;     
 }
 
 .autor-commnent{
@@ -1045,7 +1075,7 @@ footer{
 /* BUTTONS +++++++++++++++++++++++++++++++++++++++++ */
 .btn{
     background-color: #FF8300;
-    display: block;
+    display: flex;
     font-size: 1rem;
     color: #fff;    
     border: 0;
@@ -1056,10 +1086,12 @@ footer{
     cursor: pointer;
     transition: background .3s ease;
     user-select: none;
-    box-shadow: 1px 1px 3px 1px #aaa;    
+    box-shadow: 1px 1px 3px 1px #c8d0e7;    
     line-height: 1rem;
     outline: none;
     border-radius: 7px;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-large{

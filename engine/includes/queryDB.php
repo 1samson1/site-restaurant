@@ -132,7 +132,8 @@
         public function get_tovar($id){
             return $this->query('
                 SELECT 
-                    `tovars`.*
+                    `tovars`.*,
+                    (SELECT COUNT(*) FROM `comments` WHERE `comments`.`tovar_id` = `tovars`.`id`) AS `count_comments`
                 FROM `tovars`
                     WHERE `tovars`.`id` = "'.$this->ecran_html($id).'"
             ;');
@@ -161,8 +162,7 @@
                     `users`.`login` AS `autor`, 
                     `news`.`title`,
                     `news`.`date`,
-                    `news`.`short_news` AS `body`,
-                    (SELECT COUNT(*) FROM `comments` WHERE `comments`.`news_id` = `news`.`id`) AS `count_comments`
+                    `news`.`short_news` AS `body`
                 FROM `news`
                     INNER JOIN `users` ON `news`.`autor` = `users`.`id`
                     ORDER BY `news`.`date` DESC
@@ -177,8 +177,7 @@
                     `users`.`login` AS `autor`, 
                     `news`.`title`,
                     `news`.`date`,
-                    `news`.`full_news` AS `body`,
-                    (SELECT COUNT(*) FROM `comments` WHERE `comments`.`news_id` = `news`.`id`) AS `count_comments`
+                    `news`.`full_news` AS `body`
                 FROM `news`
                     INNER JOIN `users` ON `news`.`autor` = `users`.`id`
                     WHERE `news`.`id` = '.$this->ecran_html($id).'
@@ -187,14 +186,14 @@
 
         /*////////////////// Query for comments  ////////////////////*/
 
-        public function add_comment($news_id, $user_id, $text, $date){
+        public function add_comment($tovar_id, $user_id, $text, $date){
             return $this->query('
-                INSERT INTO `comments` (`news_id`, `user_id`, `text`, `date`) 
-                    VALUES ('.$this->ecran_html($news_id).', '.$this->ecran_html($user_id).', "'.$this->ecran($text).'", '.$date.')
+                INSERT INTO `comments` (`tovar_id`, `user_id`, `text`, `date`) 
+                    VALUES ('.$this->ecran_html($tovar_id).', '.$this->ecran_html($user_id).', "'.$this->ecran($text).'", '.$date.')
             ;');
         }
 
-        public function get_comments_by_news_id($id){
+        public function get_comments_by_tovar_id($id){
             return $this->query('
                 SELECT 
                     `comments`.`id`,
@@ -205,7 +204,7 @@
                     `comments`.`date`
                 FROM `comments` 
                     INNER JOIN `users` ON `comments`.`user_id` = `users`.`id`
-                    WHERE `comments`.`news_id` = '.$this->ecran_html($id).'
+                    WHERE `comments`.`tovar_id` = '.$this->ecran_html($id).'
                     ORDER BY `comments`.`date` DESC
             ;');
         }
@@ -402,12 +401,12 @@
                 SELECT 
                     `comments`.`id`,
                     `users`.`login` AS `autor`,
-                    `news`.`title` AS `news`,
-                    `news`.`id` AS `news_id`,
+                    `tovars`.`name` AS `item`,
+                    `tovars`.`id` AS `item_id`,
                     `comments`.`text`,
                     `comments`.`date`
                 FROM `comments`
-                    INNER JOIN `news` ON `news`.`id` = `comments`.`news_id`
+                    INNER JOIN `tovars` ON `tovars`.`id` = `comments`.`tovar_id`
                     INNER JOIN `users` ON `users`.`id` = `comments`.`user_id`
                     ORDER BY `comments`.`date` DESC
             ;');

@@ -4,7 +4,6 @@
         
         $db->get_full_news($_GET['param1']);
         if($news_item = $db->get_row()){
-            require_once ENGINE_DIR.'/modules/comments.php';	
             
             $tpl->load('fullnews.html');
 
@@ -12,7 +11,6 @@
             $tpl->set('{body}', $news_item['body']);
             $tpl->set('{date}', date('d.m.Y', $news_item['date']));
             $tpl->set('{autor}', $news_item['autor']);
-            $tpl->set('{count_comments}', $news_item['count_comments']);
             
             $tpl->save('{content}');
             $head['title'] = $news_item['title'];
@@ -44,7 +42,6 @@
             $tpl->set('{body}', $news_item['body']);
             $tpl->set('{date}', date('d.m.Y', $news_item['date']));
             $tpl->set('{autor}', $news_item['autor']);
-            $tpl->set('{count_comments}', $news_item['count_comments']);
             $tpl->set('{news-link}', '/news/'.$news_item['id'].'/');
     
             $tpl->copy_tpl();

@@ -29,8 +29,8 @@
         while($comment = $db->get_row()){
         
             $tpl->set('{autor}', $comment['autor']);
-            $tpl->set('{news}', $comment['news']);
-            $tpl->set('{url-news}', '/news/'.$comment['news_id'].'/');            
+            $tpl->set('{item}', $comment['item']);
+            $tpl->set('{url-item}', '/news/'.$comment['item_id'].'/');            
             $tpl->set('{text}', $comment['text']);
             $tpl->set('{date}', date('Y.m.d H:i',$comment['date']));
             $tpl->set('{delete-link}', addGetParam('delete', $comment['id']));

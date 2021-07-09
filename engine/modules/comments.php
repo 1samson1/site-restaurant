@@ -19,7 +19,7 @@
     /* Block comments ================================================= */
     $tpl->load('comments.html');
 
-    $db->get_comments_by_news_id($_GET['param1']);
+    $db->get_comments_by_tovar_id($_GET['param1']);
     
     while ($comment = $db->get_row()) {
 

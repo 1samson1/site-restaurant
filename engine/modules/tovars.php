@@ -7,13 +7,15 @@
 
         $db->get_tovar($_GET['param1']);
         if($tovar = $db->get_row()){
+            require_once ENGINE_DIR.'/modules/comments.php';
 
             $tpl->load('fulltovar.html');
             
             $tpl->set('{poster}', '/'.$tovar['poster']);
             $tpl->set('{name}', $head['title'] = $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
-            $tpl->set('{prace}', $tovar['prace']);            
+            $tpl->set('{prace}', $tovar['prace']);    
+            $tpl->set('{count_comments}', $tovar['count_comments']);        
 
             if($tovar['discount']){
 

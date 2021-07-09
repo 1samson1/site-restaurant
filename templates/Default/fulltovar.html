@@ -8,12 +8,34 @@
                 [discount] <span class="discount">{discount} руб. <span class="prace">{prace} руб.</span></span>[/discount]           
             </div>
             <div class="tovar__buy">
-                <div class="btn btn-noradius">Добавить в корзину</div>
+                <button class="btn">Добавить в корзину</button>
+                <div class="plus-minus">
+                    <button class="btn btn-red btn-noradius minus">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                            <path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13H5v-2h14v2z"/>
+                        </svg>
+                    </button>
+                    <input type="text" class="plus-minus__feild" maxlength="3">
+                    <button class="btn btn-red btn-noradius plus">
+                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                            <g><rect fill="none" height="24" width="24"/></g><g><g><path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z"/></g></g>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <div class="tovar__description">
                 <span>Описание</span>
                 <p>{description}</p>
             </div>
         </div>
+    </div>
+</div>
+
+{addcomments}
+
+<div class="container-fill container-comments">
+    <div class="title-comments">Отзывы ({count_comments}):</div>
+    <div id="comments" class="comments">
+        {comments}
     </div>
 </div>

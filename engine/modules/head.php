@@ -7,11 +7,7 @@ $head = <<<HTML
 <link rel="stylesheet" href="/engine/css/imagefuller.css">
 <script src="/engine/js/imagefuller.js"></script>
 
-<link rel="stylesheet" href="/engine/css/datepicker.css">
-<script src="/engine/js/datepicker.js"></script>
-
-<link rel="stylesheet" href="/engine/css/timepicker.css">
-<script src="/engine/js/timepicker.js"></script>
+<script src="/engine/js/plusminus.js"></script> 
 
 <script src="/engine/js/tinymce/tinymce.min.js"></script>
 
