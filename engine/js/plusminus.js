@@ -1,14 +1,17 @@
 $(function () {
     $('.plus-minus').each(function () {
-        var count = 1,
-            minValue = 1,
-            maxValue = 100;           
-
-        var minusBtn = $(this).children('.minus')
-        var feild = $(this).children('.plus-minus__feild')
-        var plusBtn = $(this).children('.plus')
-
+        
+        var plusminus = $(this),
+            minusBtn = $(this).children('.minus'),
+            feild = $(this).children('.plus-minus__feild'),
+            plusBtn = $(this).children('.plus');
+        
+        var count = Number($(this).attr('data-value')) || 1,
+            minValue = Number($(this).attr('data-min-value')) || 1,
+            maxValue = Number($(this).attr('data-max-value')) || 100;  
+                    
         feild.val(count);
+        plusminus.data('count', count)
 
         minusBtn.on('click', minus)
 
@@ -17,28 +20,32 @@ $(function () {
         feild.on('input', onInput);     
 
         function minus(){
-            if(count >= minValue){
+            if(count > minValue){
                 count--
                 feild.val(count)
+                plusminus.trigger('count', count)
+                plusminus.data('count', count)
             }
         }
         
         function plus(){
-            if(count <= maxValue){
+            if(count < maxValue){
                 count++
                 feild.val(count)
+                plusminus.trigger('counted', count)
+                plusminus.data('count', count)
             }
         }   
 
         function paste(number) {
             count = test(number)
             feild.val(count)
+            plusminus.trigger('counted', count)
+            plusminus.data('count', count)
         }
 
         function test(number) {
             var num = Number(number)
-
-            console.log(num)
 
             if(!num)
                 return minValue
@@ -50,7 +57,7 @@ $(function () {
                 return minValue
 
             return number
-        }
+        }        
 
         function onInput(event) {
             paste(feild.val())
