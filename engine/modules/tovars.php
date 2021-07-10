@@ -13,6 +13,7 @@
             
             $tpl->set('{poster}', '/'.$tovar['poster']);
             $tpl->set('{name}', $head['title'] = $tovar['name']);
+            $tpl->set('{id}', $tovar['id']);
             $tpl->set('{description}', $tovar['description']);
             $tpl->set('{prace}', $tovar['prace']);    
             $tpl->set('{count_comments}', $tovar['count_comments']);        
