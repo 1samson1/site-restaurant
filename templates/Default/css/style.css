@@ -112,6 +112,12 @@ header{
     justify-content: space-between;
 }
 
+.topmenu__right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .topmenu__link{
     display: inline-block;
     font-weight: bold;
@@ -144,6 +150,28 @@ header{
     height: 60px;    
     margin: 0 auto;
     display: block;
+}
+
+.basket__link{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.basket__indicator{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    top: 5px;
+    right: 5px;
+    background: #d4281f;
+    color: #FFF;
+    font-size: 0.9rem;
+    border-radius: 1.1rem;
 }
 /* HAMBURGER MENU ++++++++++++++++++++++++++++++++++++*/
 
@@ -571,6 +599,30 @@ main{
 
 .plus-minus .plus-minus__feild:focus{
     outline: 0;
+}
+
+/* BASKET +++++++++++++++++++++++++++++++++++++++++++ */
+
+.basket-items{
+    padding: 0 15px;
+}
+
+.basket-item{
+    display: flex;    
+    background: #00000010;
+    border-radius: 7px;
+    padding: 7px;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
+    margin-bottom: 15px;
+}
+
+.basket-item__poster{
+    width: 100px;
+    border-radius: 7px;
+}
+
+.basket-item__info{
+    margin-left: 10px;
 }
 
 /* MODAL WINDOW +++++++++++++++++++++++++++++++++++++ */

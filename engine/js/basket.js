@@ -1,5 +1,9 @@
 var Basket = JSON.parse(Cookies.get('basket') || '[]');
 
+$(function () {
+    updateBasket();
+})
+
 function clearBasket() {
     Basket = [];
     Cookies.set('basket', '[]');
@@ -9,24 +13,31 @@ function addBasket(tovar) {
     for(let element of Basket){
         if(element.name == tovar.name){
             element.count += tovar.count;
-            Cookies.set('basket', JSON.stringify(Basket));
+            element.summ += tovar.summ;
             return;
         }
     }
     
-    Basket.push(tovar); 
+    Basket.push(tovar);
+}
+
+function updateBasket() {
+    $('.basket__indicator').text(Basket.length);
     Cookies.set('basket', JSON.stringify(Basket));
 }
 
-function buyTovar(id, name, poster){
+function buyTovar(id, name, poster, prace){
     var count = $('.plus-minus').data('count');
 
     addBasket({
         id,
         name,
         count,
-        poster
+        poster,
+        prace:Number(prace),
+        summ: count*prace,
     })
+    updateBasket();
     
     $('.added-tovar-description').text("Товар " + name + " добавлен в корзину.")
 

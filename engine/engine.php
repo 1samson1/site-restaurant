@@ -23,10 +23,6 @@
             require_once ENGINE_DIR.'/modules/profile.php';
             break;
 
-        case 'category':
-            require_once ENGINE_DIR.'/modules/category.php';
-            break;
-        
         case 'static':
             require_once ENGINE_DIR.'/modules/static.php';
             break;
@@ -35,8 +31,16 @@
             require_once ENGINE_DIR.'/modules/news.php';
             break;
 
+        case 'category':
+            require_once ENGINE_DIR.'/modules/category.php';
+            break;
+
         case 'tovars':
             require_once ENGINE_DIR.'/modules/tovars.php';
+            break;
+
+        case 'basket':
+            require_once ENGINE_DIR.'/modules/basket.php';
             break;
         
         default:

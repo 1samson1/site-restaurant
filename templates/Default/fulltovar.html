@@ -8,7 +8,7 @@
                 [discount] <span class="discount">{discount} руб. <span class="prace">{prace} руб.</span></span>[/discount]           
             </div>
             <div class="tovar__buy">
-                <button class="btn" onclick="buyTovar({id}, '{name}', '{poster}')">Добавить в корзину</button>
+                <button class="btn" onclick="buyTovar({id}, '{name}', '{poster}', '[not-discount]{prace}[/not-discount] [discount]{discount}{prace}[/discount]')">Добавить в корзину</button>
                 <div class="plus-minus">
                     <button class="btn btn-red btn-noradius minus">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
