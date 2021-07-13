@@ -20,14 +20,14 @@
                 $tpl->set('[discount]','');
                 $tpl->set('[/discount]','');
                 $tpl->set('{discount}', $basket_item['discount']);
-                $tpl->set('{cost}',  $basket_item['discount'] * $basket_item['count']);
+                $tpl->set('{cost}',  $basket_item['discount']);
                 
             } else {
                 
                 $tpl->set_block('discount','');
                 $tpl->set('[not-discount]','');
                 $tpl->set('[/not-discount]','');
-                $tpl->set('{cost}',  $basket_item['price'] * $basket_item['count']);
+                $tpl->set('{cost}',  $basket_item['price']);
 
             }
         

@@ -23,8 +23,8 @@ $(function () {
             if(count > minValue){
                 count--
                 feild.val(count)
-                plusminus.trigger('count', count)
                 plusminus.data('count', count)
+                plusminus.trigger('count', count)
             }
         }
         
@@ -32,8 +32,8 @@ $(function () {
             if(count < maxValue){
                 count++
                 feild.val(count)
-                plusminus.trigger('counted', count)
                 plusminus.data('count', count)
+                plusminus.trigger('count', count)
             }
         }   
 

@@ -663,6 +663,10 @@ main{
     justify-content: center;
 }
 
+.basket-item__summ .summ{  
+    margin-right: 0.3rem;
+}
+
 .basket-item__poster{
     width: 100px;
     border-radius: 7px;

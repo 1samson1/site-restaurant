@@ -27,7 +27,42 @@ $(function () {
             })
         
     })
+
+    $('.basket-item__buy').each(function () {
+        changeCost(
+            $(this).find('.basket-item__summ .summ'),
+            $(this).attr('data-cost'),
+            $(this).find('.plus-minus').data('count')
+        );
+    })
+
+
+    $('.basket-item__buy').on('count', '.plus-minus', function (event) {
+
+        const tovar_id = $(event.delegateTarget).attr('data-tovar');
+        const count = $(this).data('count');
+
+        if($(this).data('timer'))
+            clearTimeout($(this).data('timer'));
+        
+        $(this).data('timer', setTimeout(function () {
+            send(`/api/basket/?action=update&id=${tovar_id}&count=${count}`)
+                .then(() => {
+                    changeCost(
+                        $(event.delegateTarget).find('.basket-item__summ .summ'),
+                        $(event.delegateTarget).attr('data-cost'),
+                        count
+                    );
+                })
+            
+        }, 1000)); 
+        
+    })
 })
+
+function changeCost(element, cost, count) {
+    element.text(Number(cost) * count)
+}
 
 function send(url,body) {
     return fetch(url, {

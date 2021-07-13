@@ -26,7 +26,6 @@
                 http_response_code(520);
             }    
         }
-
             
     } elseif ($_GET['action'] == "remove"){
         if(isset($_SESSION['basket'][0])){
@@ -39,11 +38,25 @@
             }
         }
         $response->set('removed');
+
+    } elseif ($_GET['action'] == "update") {
+        if(isset($_SESSION['basket'][0])){
+            foreach($_SESSION['basket'] as $index => $tovar){
+                if($tovar['id'] == $_GET['id']){
+                    $_SESSION['basket'][$index]['count'] =  intval($_GET['count']);                    
+                    break;
+                }
+            }
+        }
+        $response->set('updated');
+
     } elseif ($_GET['action'] == "clear") {
         unset($_SESSION['basket']);
         $response->set('cleared');
+
     } else {
         $response->set($_SESSION['basket']);
+
     }
 
     
