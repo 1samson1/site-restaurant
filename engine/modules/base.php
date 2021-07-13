@@ -28,6 +28,8 @@
         $tpl->set('{registration-link}', '/registration/');
     }
 
+    $tpl->set('{count-basket}', isset($_SESSION['basket'][0])?count($_SESSION['basket']) : 0 );
+
     $tpl->set_block_param('/\[page=(.+)\](.*)\[\/page=\1\]/Us', $page);
 
 

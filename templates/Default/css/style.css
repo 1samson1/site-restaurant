@@ -306,6 +306,10 @@ header{
     border-width: 1px 0 1px 0;
 }
 
+.singin-form .btn{
+    margin-top: 7px;
+}
+
 .have-account{
     font-size: 0.9rem;
     padding: 20px 0 5px 0;    
@@ -425,13 +429,13 @@ main{
     font-weight: bold;
 }
 
-.prace{
+.price{
     font-weight: bold;
     font-size: 1em;
     color: #555;
 }
 
-.discount .prace{
+.discount .price{
     color: #777;
     text-decoration: line-through;
     font-size: 0.9em;
@@ -493,11 +497,7 @@ main{
     margin-top: auto;
 }
 
-.short-tovar__buy .btn{
-    margin-top: 0;
-}
-
-.short-tovar__prace{
+.short-tovar__price{
     font-size: 1.2em;
 }
 
@@ -518,6 +518,7 @@ main{
     border-radius: 10px;
     display: block;
     width: 50%;
+    box-shadow: 1px 1px 3px 1px #c8d0e7;   
 }
 
 .tovar__name{
@@ -525,7 +526,7 @@ main{
     padding-bottom: 30px;    
 }
 
-.tovar__prace{
+.tovar__price{
     font-size: 2rem;
     padding: 10px 0;    
 }
@@ -536,8 +537,7 @@ main{
 }
 
 .tovar__buy .btn{
-    flex-grow: 1;
-    margin-top: 0;
+    flex-grow: 1;    
 }
 
 .tovar__description span{
@@ -586,12 +586,13 @@ main{
 
 .plus-minus .btn{
     box-shadow: none;
+    padding: 9px;
 }
 
 .plus-minus .plus-minus__feild{
     transition: border-color .3s ease;
     border: 2px solid #DBDBDB;
-    width: 5rem;
+    width: 3.5rem;
     text-align: center;
     font-size: 1.1rem;
     border-color: #DC3545;
@@ -603,11 +604,32 @@ main{
 
 /* BASKET +++++++++++++++++++++++++++++++++++++++++++ */
 
+.basket .container-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket .clear{
+    color:#FF8300;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color .3s ease;
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+}
+
+.basket .clear:hover{
+    color:#FFA240;    
+}
+
 .basket-items{
     padding: 0 15px;
 }
 
 .basket-item{
+    position: relative;
     display: flex;    
     background: #00000010;
     border-radius: 7px;
@@ -616,14 +638,71 @@ main{
     margin-bottom: 15px;
 }
 
+.basket-item__tovar{
+    display: flex;
+    align-items: flex-start;
+}
+
+.basket-item__buy{
+    margin-left: auto;
+    display: flex;
+}
+
+.basket-item__count{
+    display: flex;
+    align-items: center;
+}
+
+.basket-item__summ{  
+    min-width: 110px;
+    margin-left: 15px;  
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .basket-item__poster{
     width: 100px;
     border-radius: 7px;
+    box-shadow: 1px 1px 3px 1px #c8d0e7;   
+}
+
+.basket-item__name{
+    display: block;
+    color: #000;
+    margin-bottom: .3rem;
+    text-decoration: none;
+}
+
+.basket-item__name:hover{
+    text-decoration: underline;
+}
+
+.basket .controls{
+    margin-top: .3rem;
 }
 
 .basket-item__info{
     margin-left: 10px;
 }
+
+.basket-item__control{
+    display: flex;
+    align-items: center;
+    column-gap: .3rem;
+    font-size: 0.9rem;
+    color:#777;
+    transition: color .3s ease;
+    user-select: none;
+    cursor: pointer;
+}
+
+.basket-item__control:hover{
+    color:#FFA240;  
+}
+
 
 /* MODAL WINDOW +++++++++++++++++++++++++++++++++++++ */
 
@@ -758,10 +837,13 @@ main{
     margin-left: 25px;
 }
 
-
 .profile-edit, .profile-security{
     padding: 10px;
     padding-top: 0;
+}
+
+.profile-edit .btn, .profile-security .btn{
+    margin-top: 7px;
 }
 
 .title-section{
@@ -828,10 +910,6 @@ main{
     border-top: 1px solid #00000030;
     border-bottom: 1px solid #00000030;
     padding: 7px 0;
-}
-
-.info-short-news .btn{
-    margin-top: 0;
 }
 
 /* FULL NEWS *************************************** */
@@ -1172,7 +1250,7 @@ footer{
     color: #fff;    
     border: 0;
     padding: 12px;
-    margin-top: 7px;
+    /* margin-top: 7px; */
     text-decoration: none;
     text-align: center;
     cursor: pointer;
@@ -1433,6 +1511,35 @@ footer{
     .tovar__name{
         font-size: 1.5rem;
         padding: 10px 0;
+    }
+
+    /* BASKET ************************************** */
+
+    .basket-item{
+        display: block;
+    }
+
+    .basket-item__buy{
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .basket-item__info{
+        padding-right: 30px;
+    }
+
+    .basket .controls{
+        position: absolute;
+        top: 7px;
+        right: 10px;
+    }
+    
+    .basket-item__control{
+        font-size: 1.2rem;
+    }
+
+    .basket-item__control span{
+        display: none;
     }
 }
 

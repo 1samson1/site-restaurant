@@ -5,7 +5,7 @@
 
     if(isset($_GET['param1'])){
 
-        $db->get_tovar($_GET['param1']);
+        $db->get_full_tovar($_GET['param1']);
         if($tovar = $db->get_row()){
             require_once ENGINE_DIR.'/modules/comments.php';
 
@@ -15,7 +15,7 @@
             $tpl->set('{name}', $head['title'] = $tovar['name']);
             $tpl->set('{id}', $tovar['id']);
             $tpl->set('{description}', $tovar['description']);
-            $tpl->set('{prace}', $tovar['prace']);    
+            $tpl->set('{price}', $tovar['price']);    
             $tpl->set('{count_comments}', $tovar['count_comments']);        
 
             if($tovar['discount']){
@@ -63,7 +63,7 @@
             $tpl->set('{poster}', '/'.$tovar['poster']);
             $tpl->set('{name}', $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
-            $tpl->set('{prace}', $tovar['prace']);            
+            $tpl->set('{price}', $tovar['price']);            
 
             if($tovar['discount']){
 

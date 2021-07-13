@@ -132,6 +132,15 @@
         public function get_tovar($id){
             return $this->query('
                 SELECT 
+                    `tovars`.*
+                FROM `tovars`
+                    WHERE `tovars`.`id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+        public function get_full_tovar($id){
+            return $this->query('
+                SELECT 
                     `tovars`.*,
                     (SELECT COUNT(*) FROM `comments` WHERE `comments`.`tovar_id` = `tovars`.`id`) AS `count_comments`
                 FROM `tovars`

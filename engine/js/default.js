@@ -9,5 +9,5 @@ $(function(){
         branding: false,  
         paste_as_text:true,  
         toolbar1: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | link image",
-    });  
+    });
 });
