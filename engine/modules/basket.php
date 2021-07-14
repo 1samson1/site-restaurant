@@ -1,9 +1,11 @@
 <?php 
-    $tpl->load('basket.html');    
 
     if(isset($_SESSION['basket'][0])){
-
-        $tpl->set_repeat_block('/\[basket-item\](.*)\[\/basket-item\]/sU');        
+        $tpl->load('basket.html');    
+    
+        $tpl->set_repeat_block('/\[basket-item\](.*)\[\/basket-item\]/sU');     
+        
+        $tpl->set('{adress}', $_SESSION['user']['adress']);
 
         foreach($_SESSION['basket'] as $basket_item){
 
@@ -38,7 +40,7 @@
         $tpl->save_repeat_block();
 
     } else {
-
+        $tpl->load('emptybasket.html');
     }
 
     $head['title'] = 'Корзина';

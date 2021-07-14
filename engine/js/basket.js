@@ -28,6 +28,7 @@ $(function () {
         
     })
 
+    
     $('.basket-item__buy').each(function () {
         changeCost(
             $(this).find('.basket-item__summ .summ'),
@@ -35,7 +36,8 @@ $(function () {
             $(this).find('.plus-minus').data('count')
         );
     })
-
+        
+    updatePayment()
 
     $('.basket-item__buy').on('count', '.plus-minus', function (event) {
 
@@ -45,6 +47,8 @@ $(function () {
         if($(this).data('timer'))
             clearTimeout($(this).data('timer'));
         
+        $('.payment .btn').attr('disabled',true);
+
         $(this).data('timer', setTimeout(function () {
             send(`/api/basket/?action=update&id=${tovar_id}&count=${count}`)
                 .then(() => {
@@ -53,6 +57,8 @@ $(function () {
                         $(event.delegateTarget).attr('data-cost'),
                         count
                     );
+                    updatePayment();
+                    $('.payment .btn').attr('disabled',false);
                 })
             
         }, 1000)); 
@@ -60,8 +66,18 @@ $(function () {
     })
 })
 
+function updatePayment() {
+    var cost = 0;
+
+    $('.basket-item__summ .summ').each(function () {
+        cost += Number($(this).text()) || 0;        
+    })
+
+    $('.payment .cost-summ').text(cost);
+}
+
 function changeCost(element, cost, count) {
-    element.text(Number(cost) * count)
+    element.text(Number(cost) || 0 * count)
 }
 
 function send(url,body) {
