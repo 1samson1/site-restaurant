@@ -67,7 +67,7 @@ $(function () {
 })
 
 function updatePayment() {
-    var cost = 0;
+    let cost = 0;
 
     $('.basket-item__summ .summ').each(function () {
         cost += Number($(this).text()) || 0;        
@@ -78,21 +78,6 @@ function updatePayment() {
 
 function changeCost(element, cost, count) {
     element.text(Number(cost) || 0 * count)
-}
-
-function send(url,body) {
-    return fetch(url, {
-        method:'GET',
-        body
-    })
-    .then(response => response.json())
-    .then(json => new Promise((resolve, reject) => {
-        if(json.errors){
-            return reject(json.errors[0])
-        }
-        return resolve(json.response)
-    }))
-    .catch( error => console.error(error))
 }
 
 function clearBasket() {

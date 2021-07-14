@@ -161,7 +161,19 @@
             ;');
         }
 
+        /*////////////////// Query for search ////////////////////*/
 
+        public function search($search, $count=10){
+            return $this->query('
+                SELECT 
+                    `tovars`.* 
+                FROM `tovars`
+                    WHERE `tovars`.`name` LIKE("%'.$this->ecran_html($search).'%")
+                    LIMIT '.$count.'
+            ;');
+        }
+
+        
         /*////////////////// Query for news ////////////////////*/
 
         public function get_short_news($count, $begin=0){

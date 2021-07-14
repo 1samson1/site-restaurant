@@ -10,6 +10,8 @@ $head = <<<HTML
 
 <script src="/engine/js/plusminus.js"></script> 
 
+<script src="/engine/js/search.js"></script> 
+
 <script src="/engine/js/basket.js"></script> 
 
 <script src="/engine/js/tinymce/tinymce.min.js"></script>

@@ -70,11 +70,11 @@
         }
 
         public function ecran($value){
-            return addslashes(stripslashes($value));
+            return mysqli_real_escape_string($this->connect, addslashes(stripslashes($value)));
         }
 
         public function ecran_html($value){
-            return htmlspecialchars(addslashes(stripslashes($value)));
+            return $this->ecran(htmlspecialchars($value));
         }
 
         public function bool_to_sql($bool){

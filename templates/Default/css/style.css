@@ -112,10 +112,16 @@ header{
     justify-content: space-between;
 }
 
+.topmenu__left .opener{
+    display: flex;
+    align-items: center;
+}
+
 .topmenu__right{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .topmenu__link{
@@ -133,14 +139,6 @@ header{
 
 .topmenu__link:hover{
     background: #00000010;
-}
-
-.topmenu__center{
-    flex-grow:1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .logo{
@@ -173,6 +171,100 @@ header{
     font-size: 0.9rem;
     border-radius: 1.1rem;
 }
+
+/* SEARCH +++++++++++++++++++++++++++++++++++++++++++ */
+
+.de-searcher{
+    position: relative;
+    min-height: 100%;
+}
+
+.de-search{
+    margin-bottom: 0 !important;
+}
+
+.de-search #de-search{
+    background: #FFF;
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 7px;
+    min-width: 300px;
+    width: 100%;
+    border: 2px solid #DBDBDB;
+}
+
+.de-search #de-search:hover{
+    border: 2px solid #FFA240;
+}
+
+.de-search #de-search:focus{
+    outline: 0;
+    border: 2px solid #ff7b00;
+}
+
+.form-group-icon #de-search{
+    padding-left: 33px;
+}
+
+.de-searched{
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    z-index: 10;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 100%;
+    box-shadow: 1px 1px 4px 1px #c8d0e7;
+    transform: translateX(-50%);
+}
+
+
+.de-searched a{
+    position: relative;
+    display: flex;    
+    background: #00000010;
+    border-radius: 7px;
+    padding: 7px;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #e5e8f1;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #000;
+    align-items: flex-start;
+}
+
+.de-searched a:hover{
+    background: #00000015;
+}
+
+.de-searched a:last-child{
+    margin-bottom: 0;
+}
+
+.search__poster{
+    width: 70px;
+    border-radius: 7px;
+    box-shadow: 1px 1px 3px 1px #c8d0e7;   
+}
+
+.search__name{
+    display: block;
+    color: #000;
+    margin-bottom: .3rem;
+    text-decoration: none;
+}
+
+.search__name:hover{
+    text-decoration: underline;
+}
+
+.search__info{
+    margin-left: 10px;
+}
+
+
 /* HAMBURGER MENU ++++++++++++++++++++++++++++++++++++*/
 
 .menu-button{
@@ -1010,7 +1102,10 @@ main{
 
 .container-comments{
     padding: 15px 20px;
+}
 
+.container-comments .btn{
+    margin-top: 7px;
 }
 
 .title-comments{
