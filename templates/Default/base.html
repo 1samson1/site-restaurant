@@ -26,31 +26,37 @@
     <header>
         <div class="container">
             <div class="topmenu">
-                <div class="topmenu__left">    
-                    <div class="opener">
+                <div class="topmenu__left">
+                    <a href="/" class="logo"></a>    
+                    <!-- <div class="opener">
                         <div class="menu-button">
                             <div class="menu-icon-wrapper" tabindex="0">                                
                                 <div class="menu-icon"></div>                                
                             </div>
                         </div>
-                        <a href="/" class="logo"></a>
                         <div class="links links-left">
-                            <a href="/" class="topmenu__link">Главная</a>
-                            <a href="/news/" class="topmenu__link">Новости</a>                            
+                            <a href="/" class="topmenu__link">Главная</a>                                                  
                         </div>
-                    </div>  
+                    </div>   -->
                 </div>               
                 <div class="topmenu__right">
-                    <div class="de-searcher">
-                        <div class="form-group form-group-icon de-search">
-                            <input type="text" name="search" id="de-search" placeholder="Поиск по сайту">
-                            <div class="form-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#000000">
-                                    <path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
+                    <div class="opener opener-search" data-toggle="false">
+                        <span class="topmenu__link search-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#000000">
+                                <path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            </svg>
+                        </span>
+                        <div class="de-searcher">
+                            <div class="form-group form-group-icon de-search">
+                                <input type="text" name="search" id="de-search" placeholder="Поиск по сайту">
+                                <div class="form-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#000000">
+                                        <path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                    </svg>
+                                </div>
                             </div>
+                            <div class="de-searched"></div>
                         </div>
-                        <div class="de-searched"></div>
                     </div>
                     <a href="/basket/" class="topmenu__link basket__link" title="Корзина">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">

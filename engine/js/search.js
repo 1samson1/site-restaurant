@@ -1,16 +1,17 @@
 $(function () {
     $(document).on("click", function (event) {
         if ($(event.target).closest(".de-searcher").length === 0 || !$(".de-searcher .de-searched").html()) {
-            $(".de-searcher .de-searched").fadeOut(500);
+            $(".de-searcher .de-searched").removeClass('open');
         } else {
-            $(".de-searcher .de-searched").fadeIn(500);
+            $(".de-searcher .de-searched").addClass('open');
          }
     });
 
     $(".de-search").on("input", "#de-search", function (event) {
         const find = $(this).val();
+        const searched = $(".de-searcher .de-searched");
 
-        if (find.trim()) {
+        if (find.trim() !== "") {
             const search = new FormData();
 
             search.append("find", find);
@@ -20,7 +21,6 @@ $(function () {
             $(this).data("timer", setTimeout(function () {
                 send("/api/search/", search, "POST")
                     .then((json) => {
-                        let searched = $(".de-searcher .de-searched");
 
                         searched.empty();
 
@@ -45,17 +45,16 @@ $(function () {
                                 searched.append(view);
                             }
 
-                            console.log(json);
-
-                            searched.fadeIn(500);
+                            searched.addClass('open');
                         } else {
-                            searched.fadeOut(500);
+                            searched.removeClass('open');
                         }
                     });
                 }, 700)
             );
         } else {
-            $(".de-searcher .de-searched").fadeOut(500);
+            searched.removeClass('open');
+            searched.empty();
         }
     });
 });

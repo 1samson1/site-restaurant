@@ -6,8 +6,11 @@
             // Open/close
             $(this).on('click', function(event) {
                 var $opener = $(this);
-                
-                $opener.toggleClass('open');
+
+                if($opener.attr('data-toggle') === "false")
+                    $opener.addClass('open');
+                else
+                    $opener.toggleClass('open');
             });
 
             // Close when resize window
