@@ -1,0 +1,42 @@
+<div class="container-fill order">
+    <div class="good"></div>
+    <div class="order-description">
+        <div class="order__title">Поздравляем! Ваш заказ оформлен!</div>
+        <div class="order__text">В ближайшее время по указанному телефону с Вами свяжется наш менеджер.</div>
+        <div class="order__number">Номер заказа - <b>{order}</b></div>
+    </div>
+</div>
+
+<div class="container-fill receipt">
+    <div class="container-header">
+        <span class="category-name">Чек ({count-basket})</span>        
+    </div>
+    <div class="container-body">
+        <div class="basket-items">
+            [basket-item]
+            <div class="basket-item">
+                <div class="basket-item__tovar">
+                    <img src="{poster}" alt="{name}" class="basket-item__poster">
+                    <div class="basket-item__info">
+                        <a href="{tovar_link}" class="basket-item__name">{name}</a>
+                        <div class="basket-item__price">
+                            [not-discount] <span class="price">{price} руб.</span>[/not-discount]
+                            [discount] <span class="discount">{discount} руб. <span class="price">{price} руб.</span></span>[/discount]           
+                        </div>                        
+                    </div>
+                </div>
+                <div class="basket-item__buy" data-tovar="{id}" data-cost="{cost}">
+                    <div class="receipt__count">{count} шт.</div>
+                    <div class="basket-item__summ">{cost} руб.</div>
+                </div>
+            </div>
+            [/basket-item]
+        </div>
+    </div>
+</div>
+
+<div class="container-fill itog">
+    <div class="container-header">
+        <span class="category-name">Сумма заказа: {itog} руб.</span>        
+    </div>
+</div>

@@ -30,11 +30,15 @@
         }
 
         public function add_query($query) {
-            if($this->queries) $this->queries .= 'START TRANSACTION;';
             $this->queries .= $query;
         }
+
+        public function add_query_begin($query){
+            $this->queries = $query.$this->queries;
+        }
         
-        public function confirm_queries() {
+        public function send_queries() {
+            $this->queries = 'START TRANSACTION;'.$this->queries;
             $this->queries .= 'COMMIT;';
             $this->multi_query($this->queries);
             $this->queries = null;
@@ -81,8 +85,8 @@
             return $bool?1:0;
         }   
 		
-		public function set_charset(){
-            return mysqli_set_charset($this->connect, "utf8");    
+		public function set_charset($charset="utf8"){
+            return mysqli_set_charset($this->connect, $charset);    
         }  
 		
 		public function __destruct(){

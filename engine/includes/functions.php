@@ -6,6 +6,11 @@
         return $_SERVER['REQUEST_URI'].'&'.$name.'='.$param;     
     }   
 
+    function randomStr($size = 10){
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        return substr(str_shuffle($permitted_chars), 0, $size);
+    }
+
     function custom ($matches){
         global $config, $db, $tpl;
 

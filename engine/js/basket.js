@@ -77,7 +77,7 @@ function updatePayment() {
 }
 
 function changeCost(element, cost, count) {
-    element.text(Number(cost) || 0 * count)
+    element.text((Number(cost) || 0) * count)
 }
 
 function clearBasket() {

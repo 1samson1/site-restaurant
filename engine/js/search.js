@@ -50,7 +50,7 @@ $(function () {
                             searched.removeClass('open');
                         }
                     });
-                }, 700)
+                }, 1000)
             );
         } else {
             searched.removeClass('open');

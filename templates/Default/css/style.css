@@ -851,6 +851,55 @@ main{
     color:#FFA240;  
 }
 
+/* ORDER ++++++++++++++++++++++++++++++++++++++++++++ */
+
+.order, .receipt, .itog{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.order{
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.order-description{
+    width: 100%;
+    margin-left: 15px;
+    font-size: 0.9rem;
+}
+
+.order__title{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.order__text{
+    margin-bottom: 10px;
+}
+
+.order__number{
+    color: #8e8e8e;
+}
+
+.receipt{
+    max-width: 800px;
+    margin-bottom: 15px;
+}
+
+.receipt__count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    min-width: 110px;
+    font-weight: bold;
+}
+
+
+
 /* EMPTY BASKET +++++++++++++++++++++++++++++++++++++ */
 
 .empty-basket{
@@ -1598,6 +1647,17 @@ footer{
     .middle-basket{
         display: block;
     }
+
+    .right-basket{
+        display: flex;
+        margin-left: 0;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .payment, .delivery{
+        width: 50%;
+    }
      
  }
 
@@ -1797,5 +1857,15 @@ footer{
 
     .tovars-odd .short-tovar, .tovars-even .short-tovar{
         flex:100% 1 0;
+    }
+
+    /* BASKET ************************************** */
+
+    .right-basket{
+        display: block;
+    }
+
+    .payment, .delivery{
+        width: 100%;
     }
 }

@@ -173,6 +173,21 @@
             ;');
         }
 
+        /*////////////////// Query for adminpanel ////////////////////*/
+
+        public function add_order($number, $adress, $phone, $time){
+            return $this->add_query_begin('
+                INSERT INTO `orders` (`number`, `adress`, `phone`, `time`) 
+                    VALUES ("'.$number.'", "'.$this->ecran_html($adress).'","'.$this->ecran_html($phone).'","'.$time.'")
+            ;');
+        }
+
+        public function add_order_tovar($order_number, $tovar_id, $count, $price){
+            return $this->add_query('
+                INSERT INTO `order_tovars` (`order_number`, `tovar_id`, `count`, `price`) 
+                    VALUES ("'.$order_number.'", "'.$this->ecran_html($tovar_id).'","'.$this->ecran_html($count).'","'.$this->ecran_html($price).'")
+            ;');
+        }
         
         /*////////////////// Query for news ////////////////////*/
 

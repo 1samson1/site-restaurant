@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Июл 09 2021 г., 15:28
+-- Время создания: Июл 16 2021 г., 17:37
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -68,8 +68,11 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `tovar_id`, `user_id`, `text`, `date`, `parent`) VALUES
-(1, 1, 12, '<p>Хорошая новость</p>', 1564163134, NULL),
-(2, 2, 56, '<p>Ну значит запишусь после каникул.</p>', 1651354654, NULL);
+(13, 2, 64, '<p>Очень вкусное блюдо, закажу ещё!</p>', 1625833959, NULL),
+(14, 2, 12, '<p>Друзья посоветовали заказать, ни разу не пожалел.</p>', 1625834703, NULL),
+(15, 2, 56, '<p>Одно из моих любимых блюд!</p>', 1625834798, NULL),
+(17, 35, 12, '<p>Тест коммента</p>', 1626271829, NULL),
+(18, 35, 12, '<p>Тест коммента</p>', 1626272322, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,6 +124,63 @@ INSERT INTO `news` (`id`, `autor`, `title`, `short_news`, `full_news`, `date_edi
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `number` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(18) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `number`, `adress`, `phone`, `time`) VALUES
+(5, '7f891c5fc88560feb99ef74c6af208f7', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442662),
+(6, 'f2efffb54e2114648db09603017aa060', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442740),
+(11, '74f046a4397e448491da17db6d284ef0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626443249),
+(12, '1a617de77ae0faeed120c34fbc7569b0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446050),
+(13, 'f6b850200ddb424a2612728ec4e97b78', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446129),
+(14, '9c5c4b011fd86484eb964e8f0144f8c2', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446171);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `order_tovars`
+--
+
+CREATE TABLE `order_tovars` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `order_number` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tovar_id` int(10) UNSIGNED NOT NULL,
+  `count` int(3) UNSIGNED NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `order_tovars`
+--
+
+INSERT INTO `order_tovars` (`id`, `order_number`, `tovar_id`, `count`, `price`) VALUES
+(1, '7f891c5fc88560feb99ef74c6af208f7', 46, 2, 190),
+(2, 'f2efffb54e2114648db09603017aa060', 46, 2, 190),
+(11, '74f046a4397e448491da17db6d284ef0', 13, 2, 240),
+(12, '74f046a4397e448491da17db6d284ef0', 11, 2, 420),
+(13, '1a617de77ae0faeed120c34fbc7569b0', 13, 3, 240),
+(14, '1a617de77ae0faeed120c34fbc7569b0', 11, 2, 420),
+(15, 'f6b850200ddb424a2612728ec4e97b78', 13, 3, 240),
+(16, 'f6b850200ddb424a2612728ec4e97b78', 11, 2, 420),
+(17, '9c5c4b011fd86484eb964e8f0144f8c2', 13, 3, 240),
+(18, '9c5c4b011fd86484eb964e8f0144f8c2', 11, 2, 420),
+(19, '9c5c4b011fd86484eb964e8f0144f8c2', 21, 1, 370);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `static`
 --
 
@@ -140,7 +200,7 @@ CREATE TABLE `static` (
 INSERT INTO `static` (`id`, `url`, `title`, `template`, `date_edit`, `date`) VALUES
 (1, 'donorstvo', 'Донорство', '<p><img src=\"/uploads/images/756c86a5e17b59e_621x300.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\"><strong>Донорство крови</strong> (от лат. donare &mdash; &laquo;дарить&raquo;) и (или) её компонентов &mdash; добровольная сдача крови и (или) её компонентов донорами, а также мероприятия, направленные на организацию и обеспечение безопасности заготовки крови и её компонентов. Клиническое использование связано с трансфузией (переливанием) реципиенту в лечебных целях. Также кровь, взятая от донора (донорская кровь), используется в научно-исследовательских и образовательных целях; в производстве компонентов крови лекарственных средств. &nbsp;Кровь как уникальное лечебное средство незаменима при переливании пострадавшим от ожогов и травм, при проведении сложных операций и при тяжелых родах. Кровь также жизненно необходима больным гемофилией, анемией и онкологическим больным при химиотерапии. &nbsp;Современная медицина не использует для лечения больных цельную кровь. Каждую дозу крови разделяют на компоненты. Для специализированного лечения применяются компоненты крови и препараты на основе донорской плазмы.&nbsp;</p>\r\n<p style=\"text-align: justify;\">Узнать можете ли вы быть донором</p>\r\n<p><img src=\"/uploads/images/2-3_protivopokazaniya_k_donorstvu.jpg\" alt=\"\" /></p>', 1621876964, 1621793638),
 (2, 'information', 'Информация о больнице', '<p><img src=\"/uploads/images/08-09-33-i.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\"><strong>Морозовская взрослая городская клиническая больница</strong><br />Наша больница занимает 7 место по оборудованию и персоналу в России. У нас все необходимые аппараты и устройства для устранения самых сложных заболеваний. Мы не являемся государственной больницей. Квалифицированный персонал ждет вас на прием в нашей больнице.</p>\r\n<p style=\"text-align: justify;\">Наша больница находится по адресу: Город Москва, Улица Дмитрия Ульянова</p>\r\n<p><img src=\"/uploads/images/08-17-28-zb24.jpg\" alt=\"\" /></p>', 1621877114, 1621793638),
-(3, 'price', 'Прайс-лист', '<table border=\"1\" cellspacing=\"0\" cellpadding=\"1\">\r\n<thead>\r\n<tr>\r\n<th>Травматолог и ортопед</th>\r\n<th>Цена в руб.</th>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>Травматолог и ортопед</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Невролог</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Окулист</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Педиатр</td>\r\n<td>1500</td>\r\n</tr>\r\n<tr>\r\n<td>Уролог</td>\r\n<td>1700</td>\r\n</tr>\r\n<tr>\r\n<td>Хирург</td>\r\n<td>500</td>\r\n</tr>\r\n<tr>\r\n<td>Хирургическая стоматология</td>\r\n<td>3000</td>\r\n</tr>\r\n<tr>\r\n<td>Лечебная стоматология</td>\r\n<td>2500</td>\r\n</tr>\r\n<tr>\r\n<td>Стоматология общей практики</td>\r\n<td>1500</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1621873997, 1621793638),
+(3, 'prace', 'Прайс-лист', '<table border=\"1\" cellspacing=\"0\" cellpadding=\"1\">\r\n<thead>\r\n<tr>\r\n<th>Травматолог и ортопед</th>\r\n<th>Цена в руб.</th>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>Травматолог и ортопед</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Невролог</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Окулист</td>\r\n<td>1000</td>\r\n</tr>\r\n<tr>\r\n<td>Педиатр</td>\r\n<td>1500</td>\r\n</tr>\r\n<tr>\r\n<td>Уролог</td>\r\n<td>1700</td>\r\n</tr>\r\n<tr>\r\n<td>Хирург</td>\r\n<td>500</td>\r\n</tr>\r\n<tr>\r\n<td>Хирургическая стоматология</td>\r\n<td>3000</td>\r\n</tr>\r\n<tr>\r\n<td>Лечебная стоматология</td>\r\n<td>2500</td>\r\n</tr>\r\n<tr>\r\n<td>Стоматология общей практики</td>\r\n<td>1500</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1621873997, 1621793638),
 (4, 'rating', 'Рейтинг врачей', '<table class=\"cwdtable\" border=\"1\" cellspacing=\"0\" cellpadding=\"1\">\r\n<thead>\r\n<tr>\r\n<th>Специалист</th>\r\n<th>Рейтинг</th>\r\n</tr>\r\n</thead>\r\n<tbody>\r\n<tr>\r\n<td>Травматолог и ортопед</td>\r\n<td>4,7</td>\r\n</tr>\r\n<tr>\r\n<td>Невролог</td>\r\n<td>4,2</td>\r\n</tr>\r\n<tr>\r\n<td>Окулист</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Педиатр</td>\r\n<td>5,0</td>\r\n</tr>\r\n<tr>\r\n<td>Уролог</td>\r\n<td>4,9</td>\r\n</tr>\r\n<tr>\r\n<td>Хирург</td>\r\n<td>4,3</td>\r\n</tr>\r\n<tr>\r\n<td>Хирургическая стоматология</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Лечебная стоматология</td>\r\n<td>4,8</td>\r\n</tr>\r\n<tr>\r\n<td>Стоматология общей практики</td>\r\n<td>4,6</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1621874012, 1621793638),
 (5, 'insurance', 'Страхование', '<p><img src=\"/uploads/images/medicinskoe-strahovanie.jpg\" alt=\"\" /></p>\r\n<p style=\"text-align: justify;\">Болезни вредят не только здоровью человека, но и приводят к материальным потерям: операции, медикаменты, различные медицинские исследования и лечебные процедуры иногда стоят дорого.</p>\r\n<p style=\"text-align: justify;\"><strong>Советуем оформить медицинский полис.</strong> Что дает полис добровольного медицинского страхования?</p>\r\n<ul>\r\n<li style=\"text-align: justify;\">Гарантия сохранности ваших средств, поскольку после приобретения полиса ДМС все затраты на медицинскую помощь в рамках программы страхования несет страховая компания,</li>\r\n<li style=\"text-align: justify;\">ваш выбор страховой программы с необходимым объемом медицинских услуг в оптимальных для вас лечебных учреждениях,</li>\r\n<li style=\"text-align: justify;\">гарантия того, что вы своевременно получите квалифицированную медицинскую помощь в рамках выбранной вами программы страхования,</li>\r\n<li style=\"text-align: justify;\">возможность круглосуточно получать бесплатные консультации у специалистов контакт-центра страховой компании по возникающим вопросам, в том числе по организации необходимой медицинской помощи в лечебном учреждении,</li>\r\n<li style=\"text-align: justify;\">постоянный контроль качества предоставляемых услуг и защита ваших интересов перед лечебным учреждением.</li>\r\n</ul>\r\n<p>Застраховаться <strong>8-800-999-65-78</strong></p>\r\n<p>Номер поддержки <strong>8-800-999-65-79</strong></p>', 1621877141, 1621793638);
 
@@ -239,7 +299,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `group_id`, `login`, `password`, `email`, `name`, `surname`, `gender`, `adress`, `phone`, `foto`, `date_reg`) VALUES
-(12, 1, 'Admin', '$2y$10$trgPL1fnnglSY3djNwS5wuI55DDOo5Sk.ZLU4Q/MxCiGVU2duyqwy', 'yafjasdlf@ya.ru', 'Админ', 'Админ', 'male', '', '+7 (777) 777-77-77', 'uploads/avatars/foto_12.png', 1575825604),
+(12, 1, 'Admin', '$2y$10$trgPL1fnnglSY3djNwS5wuI55DDOo5Sk.ZLU4Q/MxCiGVU2duyqwy', 'yafjasdlf@ya.ru', 'Админ', 'Админ', 'male', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 'uploads/avatars/foto_12.png', 1575825604),
 (13, 2, 'tyt', '$2y$10$OgfHEu39yMaikUhK0.vUd.gXGZZB6VgQsvX0w2NrCD6GSLAVTabGW', 'rgdf@f', '', '', '', '', '', '', 1575825604),
 (14, 2, 'hypop', '$2y$10$CKfQJ7FZ4xpTJH4YXFVMeOuqVrv3Yj/KJf2cXgopZcWKeSnbFMBj6', 'hty@tr', '', '', '', '', '', '', 1575825604),
 (15, 2, 'test2', '$2y$10$trgPL1fnnglSY3djNwS5wuI55DDOo5Sk.ZLU4Q/MxCiGVU2duyqwy', 'test@test.test', 'Тестовый', 'Тестов', '', '', '', '', 1575825604),
@@ -365,7 +425,16 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `date`) VALUES
 (165, 12, '$2y$10$uIGwFCf4JGz136cy9CA4lelSqaulrlXykhxLNApFhRwVhiecR7nve', 1625684880),
 (168, 12, '$2y$10$RUzcbleyW6iDN3H5T1BqCOYv/EJJ1inrZhgzeV6NUNe1tL7NVTiGC', 1625763308),
 (169, 12, '$2y$10$f6okkwZRZXqfCQUP/lls.eXPWcjjchx5EIMpnRDtQNE65Nh6dH5nC', 1625763561),
-(170, 12, '$2y$10$rsA96IbXnENZfdqPrPfSzuyAcOnz8x0Xu5gqxBj1LsYs4UXnP3IGm', 1625833059);
+(170, 12, '$2y$10$rsA96IbXnENZfdqPrPfSzuyAcOnz8x0Xu5gqxBj1LsYs4UXnP3IGm', 1625833059),
+(173, 56, '$2y$10$rRSP2.DtNzhZ270aCORg7e0UA4VD79EnBPgbB/un5fZFfxOhqyFLi', 1625834777),
+(174, 12, '$2y$10$9zU0JGfVgy/71AzBA9xUX.rxk2vUFcYBbAUO516kEv.g7NFtLo/ju', 1625837615),
+(176, 12, '$2y$10$X2g4X2GRrtXgv8au.14Nr.lTU1tUcF0v6hz7i.GfFeeWreakQZVya', 1626013432),
+(177, 12, '$2y$10$FupHQu0fPBoVW4RHY6QC5OYhowllCxgypZBxGbDgqpLgeN.UnJ5L6', 1626096157),
+(178, 12, '$2y$10$Dc1CWqxib5gdV.bqdaHcZ.apDFMBEfEFQpog2LLoQOEZRXOm/LMJa', 1626177389),
+(179, 12, '$2y$10$SUaNc.oBpRckZCv4S7exFOO1L/hUnXRPwS4QZcAywuFeXJGGP94rK', 1626259745),
+(180, 12, '$2y$10$byWmW1aAohudcr0FHYXjPOQejNTc9J.5u3U0fUUzWJuSbMfkpBIdu', 1626270243),
+(181, 12, '$2y$10$4rqh8.BbAYw4y9s.zOwt7O4h4ymxbJ2ThZT5vBLfeSvCex3kM80bO', 1626352701),
+(183, 12, '$2y$10$r1AIOT.iZFr3nIvUOK9EcOgp6Ap.6IjAmUnWy79GHSwjUF53iUhlu', 1626438246);
 
 --
 -- Индексы сохранённых таблиц
@@ -397,6 +466,21 @@ ALTER TABLE `groups`
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_users_news` (`autor`);
+
+--
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `number` (`number`) USING BTREE;
+
+--
+-- Индексы таблицы `order_tovars`
+--
+ALTER TABLE `order_tovars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_tovars` (`tovar_id`),
+  ADD KEY `order_number` (`order_number`) USING BTREE;
 
 --
 -- Индексы таблицы `static`
@@ -443,7 +527,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `groups`
@@ -456,6 +540,18 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `order_tovars`
+--
+ALTER TABLE `order_tovars`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `static`
@@ -479,7 +575,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -497,6 +593,13 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `FK_users_news` FOREIGN KEY (`autor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `order_tovars`
+--
+ALTER TABLE `order_tovars`
+  ADD CONSTRAINT `FK_orders` FOREIGN KEY (`order_number`) REFERENCES `orders` (`number`),
+  ADD CONSTRAINT `FK_tovars` FOREIGN KEY (`tovar_id`) REFERENCES `tovars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `tovars`
