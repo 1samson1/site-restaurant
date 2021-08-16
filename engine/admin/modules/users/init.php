@@ -168,7 +168,7 @@
 
         $db->get_users();
         
-        $tpl->set_repeat_block('/\[users\](.*)\[\/users\]/sU');
+        $tpl->set_repeat_block('users');
         
         while($user = $db->get_row()){
         

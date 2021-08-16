@@ -34,7 +34,10 @@
             $this->data_block[$block] = $value;
         }
 
-        public function set_repeat_block($block){
+        public function set_repeat_block($block, $flags="sU"){
+
+            $block = '/\['.$block.'\](.*)\[\/'.$block.'\]/'.$flags;
+
             if(preg_match($block, $this->template, $matches)){
                 $this->repeat = $block;
                 $this->repeat_block = $matches[1];
@@ -134,7 +137,9 @@
 
         public function save_repeat_block(){
             $this->template .= $this->endlines;
-            $this->template = preg_replace($this->repeat, $this->copy_template, $this->template);
+            if($this->repeat){
+                $this->template = preg_replace($this->repeat, $this->copy_template, $this->template);
+            }
             $this->repeat = null;
             $this->repeat_block = null;
             $this->copy_template = null;

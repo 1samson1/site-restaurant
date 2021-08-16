@@ -290,10 +290,10 @@
             ;');
         }
 
-        public function add_static($url, $title, $template, $date_edit, $date){
+        public function add_static($url, $title, $template, $date){
             return $this->query('
                 INSERT INTO `static` (`url`, `title`, `template`, `date_edit`, `date`) 
-                    VALUES ("'.$this->ecran_html($url).'", "'.$this->ecran_html($title).'", "'.$this->ecran($template).'", '.$this->ecran_html($date_edit).', '.$this->ecran_html($date).')
+                    VALUES ("'.$this->ecran_html($url).'", "'.$this->ecran_html($title).'", "'.$this->ecran($template).'", '.$this->ecran_html($date).', '.$this->ecran_html($date).')
             ;');
         }
 
@@ -316,7 +316,7 @@
             ;');
         }
 
-        /* Module users*/
+        /* Module users */
 
         public function get_users(){
             return $this->query('
@@ -382,7 +382,7 @@
             ;');
         }
 
-        /* Module news*/
+        /* Module news */
 
         public function get_news(){
             return $this->query('
@@ -430,7 +430,7 @@
             ;');
         }
 
-        /* Module comments*/
+        /* Module comments */
 
         public function get_comments(){
             return $this->query('
@@ -451,6 +451,46 @@
         public function remove_comment($id){
             return $this->query('
                 DELETE FROM `comments`
+                    WHERE `id` = "'.$this->ecran_html( $id).'"
+            ;');
+        }
+
+        /* Module categories */
+
+        public function get_categories(){
+            return $this->query('
+                SELECT * FROM `categories`
+            ;');
+        }
+
+        public function get_category_by_id($id){
+            return $this->query('
+                SELECT * FROM `categories` WHERE `id` = '.$this->ecran_html($id).'
+            ;');
+        }
+
+        public function add_category($url, $name, $description, $date){
+            return $this->query('
+                INSERT INTO `categories` (`url`, `name`, `description`, `date_edit`, `date`) 
+                    VALUES ("'.$this->ecran_html($url).'", "'.$this->ecran_html($name).'", "'.$this->ecran($description).'", '.$this->ecran_html($date).', '.$this->ecran_html($date).')
+            ;');
+        }
+
+        public function edit_category($id, $url, $name, $description, $date_edit){
+            return $this->query('
+                UPDATE `categories` 
+                    SET                          
+                        `url` = "'.$this->ecran_html($url).'",
+                        `name` = "'.$this->ecran_html($name).'",
+                        `description` = "'.$this->ecran($description).'",
+                        `date_edit` = "'.$this->ecran_html($date_edit).'"
+                    WHERE `id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+        public function remove_category($id){
+            return $this->query('
+                DELETE FROM `categories`
                     WHERE `id` = "'.$this->ecran_html( $id).'"
             ;');
         }

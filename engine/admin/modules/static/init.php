@@ -67,7 +67,7 @@
             $alerts->set_error_if(!CheckField::empty($_POST['template']), 'Ошибка добавления!', 'Вы не ввели текст страницы!', 566);
 
             if(!isset($alerts->alerts_array[0])){
-                if($db->add_static($_POST['url'], $_POST['title'], $_POST['template'], time(), time())){  
+                if($db->add_static($_POST['url'], $_POST['title'], $_POST['template'], time())){  
 
                     return showSuccess('Страница добавлена!','Успешно добавлена страница!', MODULE_URL);
 
@@ -87,7 +87,7 @@
     
         $db->get_statics();
         
-        $tpl->set_repeat_block('/\[statics\](.*)\[\/statics\]/sU');
+        $tpl->set_repeat_block('statics');
         
         while($static = $db->get_row()){
         

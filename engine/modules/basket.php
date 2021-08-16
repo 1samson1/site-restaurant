@@ -51,7 +51,7 @@
 
         $tpl->load('order.html');
 
-        $tpl->set_repeat_block('/\[basket-item\](.*)\[\/basket-item\]/sU');    
+        $tpl->set_repeat_block('basket-item');    
         
         $sum = 0;
         
@@ -94,7 +94,7 @@
     }elseif(isset($_SESSION['basket'][0])){
         $tpl->load('basket.html');    
     
-        $tpl->set_repeat_block('/\[basket-item\](.*)\[\/basket-item\]/sU');     
+        $tpl->set_repeat_block('basket-item');
         
         $tpl->set('{adress}', $_SESSION['user']['adress']);
         $tpl->set('{phone}', $_SESSION['user']['phone']);
