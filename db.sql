@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Июл 16 2021 г., 17:37
+-- Время создания: Авг 16 2021 г., 22:34
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -72,7 +72,8 @@ INSERT INTO `comments` (`id`, `tovar_id`, `user_id`, `text`, `date`, `parent`) V
 (14, 2, 12, '<p>Друзья посоветовали заказать, ни разу не пожалел.</p>', 1625834703, NULL),
 (15, 2, 56, '<p>Одно из моих любимых блюд!</p>', 1625834798, NULL),
 (17, 35, 12, '<p>Тест коммента</p>', 1626271829, NULL),
-(18, 35, 12, '<p>Тест коммента</p>', 1626272322, NULL);
+(18, 35, 12, '<p>Тест коммента</p>', 1626272322, NULL),
+(19, 20, 12, '<p>Тест клиента на телефоне</p>', 1627995511, NULL);
 
 -- --------------------------------------------------------
 
@@ -129,6 +130,7 @@ INSERT INTO `news` (`id`, `autor`, `title`, `short_news`, `full_news`, `date_edi
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `number` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(18) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -139,13 +141,17 @@ CREATE TABLE `orders` (
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `number`, `adress`, `phone`, `time`) VALUES
-(5, '7f891c5fc88560feb99ef74c6af208f7', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442662),
-(6, 'f2efffb54e2114648db09603017aa060', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442740),
-(11, '74f046a4397e448491da17db6d284ef0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626443249),
-(12, '1a617de77ae0faeed120c34fbc7569b0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446050),
-(13, 'f6b850200ddb424a2612728ec4e97b78', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446129),
-(14, '9c5c4b011fd86484eb964e8f0144f8c2', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446171);
+INSERT INTO `orders` (`id`, `user_id`, `number`, `adress`, `phone`, `time`) VALUES
+(5, 12, '7f891c5fc88560feb99ef74c6af208f7', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442662),
+(6, 12, 'f2efffb54e2114648db09603017aa060', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626442740),
+(11, 12, '74f046a4397e448491da17db6d284ef0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626443249),
+(12, 12, '1a617de77ae0faeed120c34fbc7569b0', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446050),
+(13, 12, 'f6b850200ddb424a2612728ec4e97b78', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446129),
+(14, 12, '9c5c4b011fd86484eb964e8f0144f8c2', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446171),
+(15, 12, '5c44202c23ed87fedddefed6fa13ba3b', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446369),
+(16, 12, '7349a7b318e0b42493a384403590a838', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1628348095),
+(17, 12, 'c3a5fe4fada3aa0236033b9a09a40489', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1628348186),
+(18, 12, '54e5a005971abe8707cbe3d22997a4cb', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1629142386);
 
 -- --------------------------------------------------------
 
@@ -176,7 +182,13 @@ INSERT INTO `order_tovars` (`id`, `order_number`, `tovar_id`, `count`, `price`) 
 (16, 'f6b850200ddb424a2612728ec4e97b78', 11, 2, 420),
 (17, '9c5c4b011fd86484eb964e8f0144f8c2', 13, 3, 240),
 (18, '9c5c4b011fd86484eb964e8f0144f8c2', 11, 2, 420),
-(19, '9c5c4b011fd86484eb964e8f0144f8c2', 21, 1, 370);
+(19, '9c5c4b011fd86484eb964e8f0144f8c2', 21, 1, 370),
+(20, '5c44202c23ed87fedddefed6fa13ba3b', 13, 3, 240),
+(21, '5c44202c23ed87fedddefed6fa13ba3b', 11, 2, 420),
+(22, '5c44202c23ed87fedddefed6fa13ba3b', 21, 1, 370),
+(23, '7349a7b318e0b42493a384403590a838', 44, 2, 150),
+(24, 'c3a5fe4fada3aa0236033b9a09a40489', 44, 2, 150),
+(25, '54e5a005971abe8707cbe3d22997a4cb', 46, 1, 190);
 
 -- --------------------------------------------------------
 
@@ -434,7 +446,10 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `date`) VALUES
 (179, 12, '$2y$10$SUaNc.oBpRckZCv4S7exFOO1L/hUnXRPwS4QZcAywuFeXJGGP94rK', 1626259745),
 (180, 12, '$2y$10$byWmW1aAohudcr0FHYXjPOQejNTc9J.5u3U0fUUzWJuSbMfkpBIdu', 1626270243),
 (181, 12, '$2y$10$4rqh8.BbAYw4y9s.zOwt7O4h4ymxbJ2ThZT5vBLfeSvCex3kM80bO', 1626352701),
-(183, 12, '$2y$10$r1AIOT.iZFr3nIvUOK9EcOgp6Ap.6IjAmUnWy79GHSwjUF53iUhlu', 1626438246);
+(183, 12, '$2y$10$r1AIOT.iZFr3nIvUOK9EcOgp6Ap.6IjAmUnWy79GHSwjUF53iUhlu', 1626438246),
+(184, 12, '$2y$10$SGzxfvobS2sMAskM2vEIk.ud1Wg1nkzuOg11jJrrV6N85bE3GdDAe', 1627995325),
+(185, 12, '$2y$10$s1tYTRBB5KnoJn/p0QrBZuHxQjwiHnV/y7WkjUcaVnfhRxJzfX5uS', 1628347388),
+(186, 12, '$2y$10$apQ9SvPP57i6nK8unMESCOAJv86aj4RyN7GaTSdozzUpUXtWffE7m', 1629131082);
 
 --
 -- Индексы сохранённых таблиц
@@ -472,7 +487,8 @@ ALTER TABLE `news`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `number` (`number`) USING BTREE;
+  ADD UNIQUE KEY `number` (`number`) USING BTREE,
+  ADD KEY `fk_users_orders` (`user_id`);
 
 --
 -- Индексы таблицы `order_tovars`
@@ -527,7 +543,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `groups`
@@ -545,13 +561,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `order_tovars`
 --
 ALTER TABLE `order_tovars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `static`
@@ -575,7 +591,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -593,6 +609,12 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `FK_users_news` FOREIGN KEY (`autor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_users_orders` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `order_tovars`

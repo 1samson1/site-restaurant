@@ -173,12 +173,12 @@
             ;');
         }
 
-        /*////////////////// Query for adminpanel ////////////////////*/
+        /*////////////////// Query for orders ////////////////////*/
 
-        public function add_order($number, $adress, $phone, $time){
+        public function add_order($user_id, $number, $adress, $phone, $time){
             return $this->add_query_begin('
-                INSERT INTO `orders` (`number`, `adress`, `phone`, `time`) 
-                    VALUES ("'.$number.'", "'.$this->ecran_html($adress).'","'.$this->ecran_html($phone).'","'.$time.'")
+                INSERT INTO `orders` (`user_id`, `number`, `adress`, `phone`, `time`) 
+                    VALUES ("'.$user_id.'", "'.$number.'", "'.$this->ecran_html($adress).'","'.$this->ecran_html($phone).'","'.$time.'")
             ;');
         }
 

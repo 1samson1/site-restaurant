@@ -27,6 +27,7 @@
             }
 
             $db->add_order(
+                $_SESSION['user']['id'],
                 $order_number,
                 $_POST['adress'],
                 $_POST['phone'],
