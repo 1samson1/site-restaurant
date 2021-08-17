@@ -8,7 +8,7 @@
         if(isset($_SESSION['basket'][0])){
             $sum = 0;
             $time = time();
-            $order_number = md5($time.randomStr());
+            $order_number = substr(md5($time.randomStr()), 0, 10);
             
             foreach($_SESSION['basket'] as $basket_item){
                 if($basket_item['discount'])
