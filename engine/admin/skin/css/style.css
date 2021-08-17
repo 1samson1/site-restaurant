@@ -826,6 +826,7 @@ footer> .container{
     display: flex;
     justify-content: center;
     width: 100%;
+    gap: 0 10px;
     align-items: center;
 }
 
@@ -835,8 +836,7 @@ footer> .container{
     display: block;
     width: 150px;
     height: 150px;
-    border-radius: 50%;  
-    margin-left: 10px;  
+    border-radius: 50%;    
     border:5px solid #eee;
     box-shadow: 1px 1px 4px 1px #777; 
     background: #fff;
@@ -844,9 +844,8 @@ footer> .container{
 
 .nocicle{
     display: block;
-    height: 150px;
-    border-radius: 7px;  
-    margin-left: 10px;  
+    max-height: 150px;
+    border-radius: 7px;    
     border:4px solid #eee;
     box-shadow: 1px 1px 4px 1px #777; 
     background: #fff;
@@ -936,6 +935,13 @@ footer> .container{
     .opener.open> .links{
         transform: scaleX(1);
     }   
+
+    /* WRAPPER ++++++++++++++++++++++++++++++++++++ */
+
+    .wrapper{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
 
     /* FORM-GROUPS ********************************* */
 

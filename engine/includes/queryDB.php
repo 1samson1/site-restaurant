@@ -546,5 +546,46 @@
             ;');
         }
 
+        /* Module orders */
+
+        public function get_orders(){
+            return $this->query('
+                SELECT * FROM `orders`
+                    ORDER BY `orders`.`time` DESC
+            ;');
+        }
+
+        public function get_order_by_id($id){
+            return $this->query('
+                SELECT 
+                    `orders`.*,
+                    `users`.`name` as `user_name`,
+                    `users`.`surname` as `user_surname`,
+                    `users`.`login` as `user_login`
+                FROM `orders`
+                    INNER JOIN `users` ON `users`.`id` = `orders`.`user_id`
+                    WHERE `orders`.`id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+        public function get_order_tovars_by_number($number){
+            return $this->query('
+                SELECT 
+                    `order_tovars`.*,
+                    `tovars`.`name`,
+                    `tovars`.`poster`
+                FROM `order_tovars`
+                    INNER JOIN `tovars` ON `tovars`.`id` = `order_tovars`.`tovar_id`
+                    WHERE `order_tovars`.`order_number` = "'.$this->ecran_html($number).'"
+            ;');
+        }
+
+        public function remove_order($id){
+            return $this->query('
+                DELETE FROM `orders`
+                    WHERE `id` = "'.$this->ecran_html( $id).'"
+            ;');
+        }
+
     }
 ?>

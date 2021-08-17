@@ -1,0 +1,58 @@
+<div class="container-fill">
+    <div class="panel-header">Просмотр заказа</div>
+    <div class="panel-body">
+        <div class="form-groups-w20">
+            <div class="form-group">
+                <label for="number">Номер заказа:</label>
+                <span>{number}</span>
+            </div>
+            <div class="form-group">
+                <label for="adress">Адрес:</label>
+                <span>{adress}</span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Моб.телефон</label>
+                <span>{phone}</span>
+            </div>      
+            <div class="form-group">
+                <label for="time">Дата и время:</label>
+                <span>{time}</span>
+            </div>
+            <div class="form-group">
+                <label for="user">Заказчик:</label>
+                <span><a href="{url-user}" target="_blank" class="link">{user_surname} {user_name}</a></span>
+            </div>
+            <div class="form-group">
+                <label for="user">Стоимость заказа (руб.):</label>
+                <span>{summ}</span>
+            </div>            
+        </div>
+        <hr>
+        <table class="list">
+            <thead>
+                <tr>
+                    <th>Постер</th>
+                    <th>Название:</th>
+                    <th>Цена (руб.):</th>                    
+                    <th>Количество:</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                [tovars]
+                <tr>
+                    <td data-list-colname="Постер:">
+                        <a href="{url-tovar}" target="_blank" class="link">
+                            <img src="{poster}" alt="{name}" style="max-width: 70px;" class="nocicle" srcset="">
+                        </a>
+                    </td>
+                    <td data-list-colname="Название:"><a href="{url-tovar}" target="_blank" class="link">{name}</a></td>
+                    <td data-list-colname="Цена (руб.):">{price}</td>
+                    <td data-list-colname="Количество:">{count}</td>
+                </tr>
+                [/tovars]
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer"></div>
+</div>

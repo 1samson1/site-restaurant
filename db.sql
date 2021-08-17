@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Авг 17 2021 г., 17:32
+-- Время создания: Авг 17 2021 г., 20:59
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -153,8 +153,7 @@ INSERT INTO `orders` (`id`, `user_id`, `number`, `adress`, `phone`, `time`) VALU
 (14, 12, '9c5c4b011fd86484eb964e8f0144f8c2', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446171),
 (15, 12, '5c44202c23ed87fedddefed6fa13ba3b', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1626446369),
 (16, 12, '7349a7b318e0b42493a384403590a838', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1628348095),
-(17, 12, 'c3a5fe4fada3aa0236033b9a09a40489', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1628348186),
-(18, 12, '54e5a005971abe8707cbe3d22997a4cb', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1629142386);
+(17, 12, 'c3a5fe4fada3aa0236033b9a09a40489', 'г. Москва, ул. Донская, д. 8', '+7 (777) 777-77-77', 1628348186);
 
 -- --------------------------------------------------------
 
@@ -190,8 +189,7 @@ INSERT INTO `order_tovars` (`id`, `order_number`, `tovar_id`, `count`, `price`) 
 (21, '5c44202c23ed87fedddefed6fa13ba3b', 11, 2, 420),
 (22, '5c44202c23ed87fedddefed6fa13ba3b', 21, 1, 370),
 (23, '7349a7b318e0b42493a384403590a838', 44, 2, 150),
-(24, 'c3a5fe4fada3aa0236033b9a09a40489', 44, 2, 150),
-(25, '54e5a005971abe8707cbe3d22997a4cb', 46, 1, 190);
+(24, 'c3a5fe4fada3aa0236033b9a09a40489', 44, 2, 150);
 
 -- --------------------------------------------------------
 
@@ -624,7 +622,7 @@ ALTER TABLE `orders`
 -- Ограничения внешнего ключа таблицы `order_tovars`
 --
 ALTER TABLE `order_tovars`
-  ADD CONSTRAINT `FK_orders` FOREIGN KEY (`order_number`) REFERENCES `orders` (`number`),
+  ADD CONSTRAINT `FK_orders` FOREIGN KEY (`order_number`) REFERENCES `orders` (`number`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_tovars` FOREIGN KEY (`tovar_id`) REFERENCES `tovars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

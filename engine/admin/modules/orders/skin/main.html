@@ -4,21 +4,27 @@
         <table class="list">
             <thead>
                 <tr>
-                    <th>Автор:</th>
-                    <th>Текст:</th>
-                    <th>Товар:</th>
-                    <th>Дата публикации:</th>
+                    <th>Номер заказа:</th>
+                    <th>Адрес:</th>
+                    <th>Моб.телефон:</th>
+                    <th>Дата и время:</th>
                     <th>Действия:</th>
                 </tr>
             </thead>
             <tbody>
-                [comments]
+                [orders]
                 <tr>
-                    <td data-list-colname="Автор:">{autor}</td>
-                    <td data-list-colname="Текст:">{text}</td>
-                    <td data-list-colname="Товар:"><a href="{url-item}" class="link">{item}</a></td>
-                    <td data-list-colname="Дата публикации:">{date}</td>
+                    <td data-list-colname="Номер заказа:">{number}</td>
+                    <td data-list-colname="Адрес:">{adress}</td>
+                    <td data-list-colname="Моб.телефон:">{phone}</td>
+                    <td data-list-colname="Дата и время:">{time}</td>
                     <td data-list-colname="Действия:">
+                        <a href="{show-link}" class="link-btn black tooltips" data-tooltip="Посмотреть">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                              </svg>
+                        </a>
                         <a href="{delete-link}" class="link-btn red tooltips" data-tooltip="Удалить">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -26,7 +32,7 @@
                         </a>
                     </td>
                 </tr>
-                [/comments]
+                [/orders]
             </tbody>
         </table>
     </div>    
