@@ -28,7 +28,7 @@ $(function () {
                             for (let tovar of json) {
                                 let view = $(
                                     `
-                                    <a href="/tovars/${tovar.id}/">
+                                    <a href="/tovar/${tovar.id}/">
                                         <img src="/${tovar.poster}" alt="${tovar.name}" class="search__poster">
                                         <div class="search__info">
                                             <div class="search__name">${tovar.name}</div>

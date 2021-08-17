@@ -113,7 +113,7 @@
 
         $crumbs->add($head['title'] = 'Добавление пользователя', '');  
 
-        if(isset($_POST['add_user'])){
+        if(isset($_POST['add'])){
 
             $alerts->set_error_if(!CheckField::login($_POST['login']), 'Ошибка регистрации', 'Некорректный логин', 201);
 

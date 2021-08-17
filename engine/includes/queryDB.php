@@ -495,5 +495,56 @@
             ;');
         }
 
+        /* Module tovars */
+
+        public function get_tovars(){
+            return $this->query('
+                SELECT * FROM `tovars`
+            ;');
+        }
+
+        public function get_tovar_by_id($id){
+            return $this->query('
+                SELECT 
+                    `tovars`.*
+                FROM `tovars`
+                    WHERE `tovars`.`id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+        public function add_tovar($category_id, $name, $description, $price, $discount, $date, $poster){
+            return $this->query('
+                INSERT INTO `tovars` (`category_id`, `name`, `description`, `price`, `discount`, `date`, `poster`) 
+                    VALUES ('.$this->ecran_html($category_id).', "'.$this->ecran_html($name).'", "'.$this->ecran($description).'", '.$this->ecran_html($price).', '.$this->ecran_html($discount).', '.$this->ecran_html($date).', "'.$this->str_to_sql($poster).'")
+            ;');
+        }
+
+        public function edit_tovar($id, $category_id, $name, $description, $price, $discount, $poster = false){
+            if($poster){
+                $poster = ', `tovars`.`poster` = "'.$poster.'"';
+            }
+            else{
+                $poster = '';
+            }
+            return $this->query('
+                UPDATE `tovars` 
+                    SET                          
+                        `category_id` = "'.$this->ecran_html($category_id).'",
+                        `name` = "'.$this->ecran_html($name).'",
+                        `description` = "'.$this->ecran($description).'",
+                        `price` = "'.$this->ecran_html($price).'",
+                        `discount` = "'.$this->ecran_html($discount).'"
+                        '.$poster.'
+                    WHERE `id` = "'.$this->ecran_html($id).'"
+            ;');
+        }
+
+        public function remove_tovar($id){
+            return $this->query('
+                DELETE FROM `tovars`
+                    WHERE `id` = "'.$this->ecran_html( $id).'"
+            ;');
+        }
+
     }
 ?>

@@ -35,7 +35,7 @@
                 if(!isset($alerts->alerts_array[0])){
                     if($db->edit_category($_GET['id'], $_POST['url'], $_POST['name'], $_POST['description'], time())){
 
-                        return showSuccess('Страница изменина!','Успешно изменена страница!', MODULE_URL);
+                        return showSuccess('Товар изменин!','Успешно изменен товар!', MODULE_URL);
 
                     }
                     else $alerts->set_error('Ошибка изменения!', 'Неизвестная ошибка!', $db->error_num);
@@ -50,14 +50,14 @@
 
             $tpl->save('{content}');
         }
-        else $alerts->set_error('Oшибка', 'Такой страницы не существует!', 404);
+        else $alerts->set_error('Oшибка', 'Такого товара не существует!', 404);
 
     }
     elseif($_GET['action'] == 'addnew'){
 
         $crumbs->add($head['title'] = 'Добавление категории', '');
 
-        if(isset($_POST['add_category'])){
+        if(isset($_POST['add'])){
             $alerts->set_error_if(!CheckField::empty($_POST['name']), 'Ошибка добавления!', 'Вы не ввели название категории!', 564);
             
             $alerts->set_error_if(!CheckField::empty($_POST['url']), 'Ошибка добавления!', 'Вы не ввели адрес категории!', 565);
@@ -65,7 +65,7 @@
             if(!isset($alerts->alerts_array[0])){
                 if($db->add_category($_POST['url'], $_POST['name'], $_POST['description'], time())){  
 
-                    return showSuccess('Страница добавлена!','Успешно добавлена страница!', MODULE_URL);
+                    return showSuccess('Товар добавлен!','Успешно добавлен товар!', MODULE_URL);
 
                 }
                 else $alerts->set_error('Ошибка добавления!', 'Неизвестная ошибка!', $db->error_num);

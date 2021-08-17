@@ -82,7 +82,11 @@
         }
 
         public function bool_to_sql($bool){
-            return $bool?1:0;
+            return $bool ? 1 : 0;
+        }   
+
+        public function str_to_sql($str){
+            return $str ? $str : '';
         }   
 		
 		public function set_charset($charset="utf8"){

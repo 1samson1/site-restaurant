@@ -30,7 +30,7 @@
         
             $tpl->set('{autor}', $comment['autor']);
             $tpl->set('{item}', $comment['item']);
-            $tpl->set('{url-item}', '/tovars/'.$comment['item_id'].'/');            
+            $tpl->set('{url-item}', '/tovar/'.$comment['item_id'].'/');            
             $tpl->set('{text}', $comment['text']);
             $tpl->set('{date}', date('Y.m.d H:i',$comment['date']));
             $tpl->set('{delete-link}', addGetParam('delete', $comment['id']));

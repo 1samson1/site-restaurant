@@ -35,8 +35,8 @@
             require_once ENGINE_DIR.'/modules/category.php';
             break;
 
-        case 'tovars':
-            require_once ENGINE_DIR.'/modules/tovars.php';
+        case 'tovar':
+            require_once ENGINE_DIR.'/modules/tovar.php';
             break;
 
         case 'basket':

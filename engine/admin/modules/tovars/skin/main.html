@@ -1,23 +1,21 @@
 <div class="container-fill">
-    <div class="panel-header">Список статических страниц</div>
+    <div class="panel-header">Список товаров на сайте</div>
     <div class="panel-body">
         <table class="list">
             <thead>
                 <tr>
                     <th>Название:</th>
-                    <th>Адрес:</th>
-                    <th>Дата последнего редактирования:</th>
-                    <th>Дата создания:</th>
+                    <th>Цена (руб.):</th>                    
+                    <th>Цена со скидкой (руб.):</th>
                     <th>Действия:</th>
                 </tr>
             </thead>
             <tbody>
-                [statics]
+                [tovars]
                 <tr>
-                    <td data-list-colname="Название:">{title}</td>
-                    <td data-list-colname="Адрес:"><a href="{url-link}" class="link">{url}</a></td>
-                    <td data-list-colname="Дата последнего редактирования:">{date_edit}</td>
-                    <td data-list-colname="Дата создания:">{date}</td>
+                    <td data-list-colname="Название:"><a href="{url}" target="_blank" class="link">{name}</a></td>
+                    <td data-list-colname="Цена (руб.):">{price}</td>
+                    <td data-list-colname="Цена со скидкой (руб.):">{discount}</td>
                     <td data-list-colname="Действия:">
                         <a href="{edit-link}" class="link-btn black tooltips" data-tooltip="Редактировать">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -31,11 +29,11 @@
                         </a>
                     </td>
                 </tr>
-                [/statics]
+                [/tovars]
             </tbody>
         </table>
     </div>
     <div class="panel-footer">
-        <a href="{add_static_link}" class="btn btn-green">Создать новую страницу</a>
+        <a href="{add_tovar_link}" class="btn btn-green">Добавить новый товар</a>
     </div>
 </div>

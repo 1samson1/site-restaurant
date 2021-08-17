@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Авг 16 2021 г., 22:34
+-- Время создания: Авг 17 2021 г., 17:32
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -32,6 +32,8 @@ CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_edit` int(11) NOT NULL,
   `date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,14 +41,15 @@ CREATE TABLE `categories` (
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `url`, `date`) VALUES
-(8, 'Салаты и закуски', 'salad', 1),
-(9, 'Основные Блюда', 'surdish', 1),
-(10, 'Супы и Выпечка', 'soups', 1),
-(11, 'Соусы и Гарниры', 'sauces', 1),
-(12, 'Десерты', 'desserts', 1),
-(13, 'Винная Карта', 'wines', 1),
-(14, 'Напитки и Коктейли', 'drinks', 1);
+INSERT INTO `categories` (`id`, `name`, `url`, `description`, `date_edit`, `date`) VALUES
+(8, 'Салаты и закуски', 'salad', '', 1575825604, 1575825604),
+(9, 'Основные Блюда', 'surdish', '', 1575825604, 1575825604),
+(10, 'Супы и Выпечка', 'soups', '', 1575825604, 1575825604),
+(11, 'Соусы и Гарниры', 'sauces', '', 1575825604, 1575825604),
+(12, 'Десерты', 'desserts', '', 1575825604, 1575825604),
+(13, 'Винная Карта', 'wines', '', 1575825604, 1575825604),
+(14, 'Напитки и Коктейли', 'drinks', '', 1575825604, 1575825604),
+(16, 'Пицца', 'pizza', '', 1629149191, 1629147827);
 
 -- --------------------------------------------------------
 
@@ -449,7 +452,8 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `date`) VALUES
 (183, 12, '$2y$10$r1AIOT.iZFr3nIvUOK9EcOgp6Ap.6IjAmUnWy79GHSwjUF53iUhlu', 1626438246),
 (184, 12, '$2y$10$SGzxfvobS2sMAskM2vEIk.ud1Wg1nkzuOg11jJrrV6N85bE3GdDAe', 1627995325),
 (185, 12, '$2y$10$s1tYTRBB5KnoJn/p0QrBZuHxQjwiHnV/y7WkjUcaVnfhRxJzfX5uS', 1628347388),
-(186, 12, '$2y$10$apQ9SvPP57i6nK8unMESCOAJv86aj4RyN7GaTSdozzUpUXtWffE7m', 1629131082);
+(186, 12, '$2y$10$apQ9SvPP57i6nK8unMESCOAJv86aj4RyN7GaTSdozzUpUXtWffE7m', 1629131082),
+(187, 12, '$2y$10$18raf9cu9duB0SLKDdAyW.cCUkalw4RHOkbmHKieDpvPlIMxtKhvy', 1629203361);
 
 --
 -- Индексы сохранённых таблиц
@@ -537,7 +541,7 @@ ALTER TABLE `user_tokens`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
@@ -573,13 +577,13 @@ ALTER TABLE `order_tovars`
 -- AUTO_INCREMENT для таблицы `static`
 --
 ALTER TABLE `static`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `tovars`
 --
 ALTER TABLE `tovars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -591,7 +595,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

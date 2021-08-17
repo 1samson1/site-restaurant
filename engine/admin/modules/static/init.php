@@ -59,7 +59,7 @@
 
         $crumbs->add($head['title'] = 'Добавление страницы', '');
 
-        if(isset($_POST['add_static'])){
+        if(isset($_POST['add'])){
             $alerts->set_error_if(!CheckField::empty($_POST['title']), 'Ошибка добавления!', 'Вы не ввели название страницы!', 564);
             
             $alerts->set_error_if(!CheckField::empty($_POST['url']), 'Ошибка добавления!', 'Вы не ввели адрес  страницы!', 565);

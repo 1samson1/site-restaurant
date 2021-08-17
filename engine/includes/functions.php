@@ -41,7 +41,7 @@
             $tpl->set('{name}', $tovar['name']);
             $tpl->set('{description}', $tovar['description']);
             $tpl->set('{price}', $tovar['price']);
-            $tpl->set('{tovar-link}', '/tovars/'.$tovar['id'].'/');
+            $tpl->set('{tovar-link}', '/tovar/'.$tovar['id'].'/');
 
             if($tovar['discount']){
 

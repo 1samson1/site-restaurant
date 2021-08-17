@@ -13,6 +13,10 @@
             return isset($field[0]);
         }
 
+        static function is_num($field){
+            return is_numeric($field);
+        }
+
         static function confirm_pass($pass, $repass){
             return $pass == $repass;          
         }

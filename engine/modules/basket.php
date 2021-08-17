@@ -62,7 +62,7 @@
             $tpl->set('{id}', $basket_item['id']);
             $tpl->set('{price}', $basket_item['price']);
             $tpl->set('{count}', $basket_item['count']);
-            $tpl->set('{tovar_link}', '/tovars/'.$basket_item['id'].'/');
+            $tpl->set('{tovar_link}', '/tovar/'.$basket_item['id'].'/');
 
             if($basket_item['discount']){
 
@@ -106,7 +106,7 @@
             $tpl->set('{id}', $basket_item['id']);
             $tpl->set('{price}', $basket_item['price']);
             $tpl->set('{count}', $basket_item['count']);
-            $tpl->set('{tovar_link}', '/tovars/'.$basket_item['id'].'/');
+            $tpl->set('{tovar_link}', '/tovar/'.$basket_item['id'].'/');
 
             if($basket_item['discount']){
 
