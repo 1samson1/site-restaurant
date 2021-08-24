@@ -193,7 +193,9 @@ header> .container{
 
 main{
     margin: auto 0;
+    flex-grow: 1;
 }
+
 
 /* PANELS  ++++++++++++++++++++++++++++++++++++++ */
 
